@@ -6,6 +6,7 @@
   <title>The Semantic HTML Vocabulary — A Self-Demonstrating Field Guide</title>
   <meta name="description" content="A single CSS-free page that demonstrates every modern semantic HTML element of 2026 in live use, from landmarks to ruby annotations to declarative popovers.">
   <link rel="canonical" href="https://html-tags.com/demo.html">
+  <link rel="stylesheet" href="styles/chrome.css">
   <link rel="alternate" hreflang="en" href="https://html-tags.com/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://html-tags.com/demo.html">
   <meta property="og:type" content="article">
@@ -24,11 +25,18 @@
   <a href="#main">Skip to main content</a>
 
   <header>
-    <p><span translate="no">Field Guide</span></p>
+    <p><a href="./">html-tags.com</a></p>
+    <p>
+      <input type="checkbox" id="css-toggle" checked>
+      <label for="css-toggle">Styled view</label>
+    </p>
     <nav aria-label="Primary">
       <ul>
-        <li><a href="#main" aria-current="page">Field guide</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements" rel="external">MDN element reference</a></li>
+        <li><a href="tags/">All tags</a></li>
+        <li><a href="examples/">Examples</a></li>
+        <li><a href="demo.html" aria-current="page">Field guide</a></li>
+        <li><a href="cheatsheet.html">Cheat sheet</a></li>
+        <li><a href="https://github.com/mikezupper/html-tags-com" rel="external">GitHub</a></li>
       </ul>
     </nav>
     <nav aria-label="Table of contents">
@@ -67,7 +75,7 @@
       </header>
 
       <p>This document is written under one rule: <strong>no CSS, no presentational
-      JavaScript</strong>. What your browser renders is its default stylesheet applied to
+      JavaScript</strong> (the site header above is the page's one styled element — everything below renders on the browser's default stylesheet). What your browser renders is its default stylesheet applied to
       honest markup. Turn on a screen reader, or open the accessibility tree in devtools
       — the structure you hear is the structure you see, because the page
       <em>is</em> its structure.</p>
@@ -309,8 +317,8 @@
           <code>&lt;math&gt;</code> (MathML Core).</figcaption>
         </figure>
 
-        <p>Audio and video players with caption tracks (sources are placeholders —
-        the markup is the demonstration):</p>
+        <p>Audio and video players with caption tracks (the sources are real ten-second
+        test clips, so the players — and the captions track — actually work):</p>
         <video controls width="320" height="180" preload="none">
           <source src="media/field-guide-intro.webm" type="video/webm">
           <source src="media/field-guide-intro.mp4" type="video/mp4">

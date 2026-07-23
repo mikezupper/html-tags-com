@@ -1,0 +1,106 @@
+/* Site chrome for pages that carry their own content theme (the examples) or
+   deliberately no content styling at all (the demo): styles ONLY the site
+   header — brand, primary nav, styled-view switch, skip link. Deliberately
+   UNLAYERED so it wins over the page themes' @layer rules for the header,
+   while never touching anything inside <main>.
+   Tokens mirror styles/system.css — keep the two in sync. */
+
+:root:has(#css-toggle:checked) {
+  --chrome-hue: 245;
+  --chrome-brand: light-dark(oklch(55% 0.19 var(--chrome-hue)), oklch(70% 0.16 var(--chrome-hue)));
+  --chrome-brand-strong: oklch(from var(--chrome-brand) calc(l - 0.07) c h);
+  --chrome-tint: color-mix(in oklch, var(--chrome-brand) 11%, var(--chrome-surface));
+  --chrome-surface: light-dark(oklch(97.5% 0.005 var(--chrome-hue)), oklch(16% 0.015 var(--chrome-hue)));
+  --chrome-overlay: light-dark(oklch(100% 0 0 / 0.72), oklch(19% 0.018 var(--chrome-hue) / 0.72));
+  --chrome-text: light-dark(oklch(22% 0.02 var(--chrome-hue)), oklch(94% 0.008 var(--chrome-hue)));
+  --chrome-muted: color-mix(in oklch, var(--chrome-text) 58%, var(--chrome-surface));
+  --chrome-hairline: color-mix(in oklch, var(--chrome-text) 11%, var(--chrome-surface));
+
+  & body > header {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 5;
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 0.6rem 1.4rem;
+    padding: 0.7rem clamp(1rem, 3vw, 1.75rem);
+    margin: 0 0 1.5rem;
+    background: var(--chrome-overlay);
+    backdrop-filter: blur(16px) saturate(1.5);
+    border-block-end: 1px solid var(--chrome-hairline);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 1rem;
+
+    & > p:first-child {
+      margin: 0; font-weight: 800; letter-spacing: -0.01em; font-size: 1.05rem;
+      & a {
+        text-decoration: none;
+        background: linear-gradient(95deg in oklch,
+          var(--chrome-brand-strong),
+          oklch(from var(--chrome-brand) calc(l + 0.12) calc(c - 0.03) calc(h - 25)));
+        background-clip: text; color: transparent;
+      }
+    }
+
+    & nav[aria-label="Primary"] {
+      margin-inline-start: auto;
+      & ul {
+        display: flex; flex-wrap: wrap; gap: 0.25rem;
+        list-style: none; margin: 0; padding: 0;
+      }
+      & a {
+        display: inline-block; padding: 0.35em 0.85em;
+        border-radius: 999px; text-decoration: none;
+        color: var(--chrome-text); font-weight: 550; font-size: 0.9rem;
+        &:hover { background: var(--chrome-tint); color: var(--chrome-brand-strong); }
+        &[aria-current="page"] { background: var(--chrome-tint); }
+      }
+    }
+
+    /* Page-specific extras (TOC, letter nav, search) wrap onto their own row */
+    & > nav:not([aria-label="Primary"]), & > search { flex-basis: 100%; }
+
+    & > p:has(#css-toggle) {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin: 0; order: 99;
+      & label { color: var(--chrome-muted); font-size: 0.85rem; }
+    }
+  }
+
+  & #css-toggle {
+    appearance: none;
+    inline-size: 2.5rem; block-size: 1.45rem;
+    margin: 0;
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--chrome-text) 22%, var(--chrome-surface));
+    position: relative; cursor: pointer;
+    transition: background 200ms ease-out;
+    &::before {
+      content: "";
+      position: absolute; inset-block-start: 0.14rem; inset-inline-start: 0.14rem;
+      inline-size: 1.17rem; block-size: 1.17rem;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 1px 3px oklch(0% 0 0 / 0.35);
+      transition: translate 200ms ease-out;
+    }
+    &:checked { background: var(--chrome-brand); }
+    &:checked::before { translate: 1.05rem 0; }
+  }
+
+  & body > a[href="#main"] {
+    position: absolute; inset-block-start: -100vb; z-index: 10;
+    &:focus-visible {
+      inset: 1rem auto auto 1rem;
+      background: var(--chrome-surface);
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--chrome-hairline);
+      text-decoration: none; font-weight: 600;
+      color: var(--chrome-brand-strong);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #css-toggle, #css-toggle::before { transition-duration: 0.01ms !important; }
+}
