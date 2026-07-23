@@ -58,6 +58,23 @@ function loadTags() {
 const esc = (s) => s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const escAttr = (s) => esc(s).replaceAll('"', "&quot;");
 
+
+function primaryNav(prefix, current) {
+  const items = [
+    ["All tags", `${prefix}tags/`, "tags"],
+    ["Examples", `${prefix}examples/`, "examples"],
+    ["Field guide", `${prefix}field-guide.html`, "field-guide"],
+    ["Cheat sheet", `${prefix}cheatsheet.html`, "cheatsheet"],
+    ["GitHub", REPO, "github"],
+  ];
+  const lis = items.map(([label, href, key]) => {
+    const cur = key === current ? ' aria-current="page"' : "";
+    const rel = key === "github" ? ' rel="external"' : "";
+    return `        <li><a href="${href}"${cur}${rel}>${label}</a></li>`;
+  }).join("\n");
+  return `    <nav aria-label="Primary">\n      <ul>\n${lis}\n      </ul>\n    </nav>`;
+}
+
 const TOGGLE = `    <p>
       <input type="checkbox" id="css-toggle" checked>
       <label for="css-toggle">Styled view</label>
@@ -162,6 +179,7 @@ ${t.snippet}
   <header>
     <p><a href="../">html-tags.com</a></p>
 ${TOGGLE}
+${primaryNav("../", "")}
     <nav aria-label="Breadcrumb">
       <ol>
         <li><a href="../">Home</a></li>
@@ -237,6 +255,7 @@ function explorerPage(tags) {
   <header>
     <p><a href="../">html-tags.com</a></p>
 ${TOGGLE}
+${primaryNav("../", "tags")}
     <nav aria-label="Breadcrumb">
       <ol>
         <li><a href="../">Home</a></li>
@@ -285,6 +304,7 @@ function cheatsheetPage(tags) {
   <header>
     <p><a href="./">html-tags.com</a></p>
 ${TOGGLE}
+${primaryNav("", "cheatsheet")}
     <nav aria-label="Breadcrumb">
       <ol>
         <li><a href="./">Home</a></li>

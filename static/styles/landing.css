@@ -95,7 +95,8 @@
     & #soup-compare {
       display: grid; gap: var(--space);
       grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
-      & figure { display: grid; gap: 0.7em; align-content: start; }
+      & figure { display: grid; gap: 0.7em; align-content: start;
+        grid-template-columns: minmax(0, 1fr); min-inline-size: 0; }
       & figure pre { box-shadow: var(--shadow-1); }
       & figure:first-child pre { border-inline-start: 3px solid oklch(62% 0.18 25); }
       & figure:last-child pre { border-inline-start: 3px solid oklch(60% 0.14 155); }

@@ -61,6 +61,7 @@
     /* ---- Live example frame ---- */
     & figure {
       display: grid; gap: 0.9em;
+      grid-template-columns: minmax(0, 1fr);
       & > div {
         background: var(--surface-raised);
         border: 1px solid var(--brand-tint-border);
