@@ -5,7 +5,7 @@
     "use": "Exactly once per document, carrying lang and dir so assistive technology and search engines know the document's language and direction.",
     "avoid": "Never omit lang — screen readers will guess the pronunciation engine and often guess wrong.",
     "attributes": ["lang — BCP 47 language tag (e.g. en, pt-BR)", "dir — ltr, rtl, or auto"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<html lang='en' dir='ltr'>…</html>", "render": false,
     "mdn": "html", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-html-element"
   },
@@ -15,7 +15,7 @@
     "use": "Once per document; put charset within the first 1024 bytes and the title early.",
     "avoid": "Don't put renderable content here — browsers will relocate it into body and your document becomes invalid.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<head>\n  <meta charset='utf-8'>\n  <title>Page title</title>\n</head>", "render": false,
     "mdn": "head", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-head-element"
   },
@@ -75,7 +75,7 @@
     "use": "Once per document; keep all perceivable content inside landmark elements within it, with a skip link first.",
     "avoid": "Don't scatter loose content directly in body — screen-reader users navigate by landmarks, and orphaned content is invisible to that navigation.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<body>\n  <a href='#main'>Skip to main content</a>\n  <header>…</header>\n  <main id='main'>…</main>\n  <footer>…</footer>\n</body>", "render": false,
     "mdn": "body", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-body-element"
   }

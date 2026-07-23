@@ -35,7 +35,7 @@
     "use": "Experimentally, for store finders and 'near me' features: listen for its location event and read .position; put a fallback button inside for other browsers.",
     "avoid": "Chromium-only and experimental — always feature-detect HTMLGeolocationElement and fall back to navigator.geolocation.",
     "attributes": ["autolocate — fetch on render if already permitted", "watch — continuous updates"],
-    "baseline": "limited", "example": "demo.html",
+    "baseline": "limited", "example": "field-guide.html",
     "snippet": "<geolocation watch>\n  <button id='geo-fallback' type='button'>Use my location</button>\n</geolocation>", "render": false,
     "mdn": "geolocation", "spec": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/geolocation"
   },
@@ -45,7 +45,7 @@
     "use": "type='application/ld+json' for structured data (the one script even a no-JS site carries); defer or type='module' for behavior so parsing never blocks.",
     "avoid": "No inline onclick attributes, no document.write, and nothing render-blocking in head without reason.",
     "attributes": ["src — external script", "type — module or a data MIME type", "defer / async — non-blocking loading"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<script type='application/ld+json'>\n{ \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"…\" }\n</script>", "render": false,
     "mdn": "script", "spec": "https://html.spec.whatwg.org/multipage/scripting.html#the-script-element"
   },

@@ -15,7 +15,7 @@
 |---|---|
 | `data/tags/*.json` | **The source of truth** — one file per element family; each entry holds a tag's summary, when-to-use / when-not guidance, attributes, Baseline status, snippet, and MDN + spec links. |
 | `build.mjs` | The generator (Node ≥ 20, zero dependencies). Cleans `dist/`, copies `static/`, generates the 112 tag pages, the explorer, the cheat sheet, and `sitemap.xml`, and injects the tag grid into the landing page. |
-| `static/` | Handwritten pages copied verbatim into the build: the landing template, the field-guide demo, the eight styled examples, the design system stylesheets, `robots.txt`, `404.html`, `_headers`. |
+| `static/` | Handwritten pages copied verbatim into the build: the landing template, the field guide (`field-guide.html`), the eight styled examples, the design system stylesheets, `robots.txt`, `404.html`, `_headers`. |
 | `dist/` | Build output (gitignored). What Cloudflare Pages serves. |
 
 ## Build

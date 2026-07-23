@@ -5,7 +5,7 @@
     "use": "For navigation to a URL or fragment, with link text that predicts the destination; use rel to describe the relationship (external, license, author, nofollow).",
     "avoid": "Never 'click here', never href='#' as a fake button (that's button), and never a link that does nothing.",
     "attributes": ["href — destination URL or #fragment", "rel — relationship tokens", "hreflang — language of the target", "download — save instead of navigate"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<a href='https://developer.mozilla.org/en-US/docs/Web/HTML' rel='external'>MDN's HTML documentation</a>", "render": true,
     "mdn": "a", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element"
   },
@@ -15,7 +15,7 @@
     "use": "Where a speaker would stress the word: 'I <em>never</em> said that' differs from 'I never said <em>that</em>'.",
     "avoid": "Not for italics-as-style (that's i or CSS) and not for importance (that's strong).",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>Do <em>not</em> add more flour — the dough is supposed to be sticky.</p>", "render": true,
     "mdn": "em", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element"
   },
@@ -25,7 +25,7 @@
     "use": "For warnings and key facts the reader must not miss; nesting increases importance.",
     "avoid": "Not for bold-as-style — attention without extra importance is b.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p><strong>Warning:</strong> the pan will be extremely hot.</p>", "render": true,
     "mdn": "strong", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-strong-element"
   },
@@ -35,7 +35,7 @@
     "use": "For fine print that qualifies the main content.",
     "avoid": "Not for de-emphasizing whole blocks or just making text smaller — that's CSS.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p><small>© 2026 Field Guide. Prices include VAT.</small></p>", "render": true,
     "mdn": "small", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-small-element"
   },
@@ -185,7 +185,7 @@
     "use": "Chemistry (H₂O), math indices, footnote conventions that require subscripts.",
     "avoid": "Not for styling small lowered text — only where subscript position is part of the notation.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>Water is H<sub>2</sub>O.</p>", "render": true,
     "mdn": "sub", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements"
   },
@@ -195,7 +195,7 @@
     "use": "Exponents (x²), ordinals in some languages, footnote markers.",
     "avoid": "Not for styling raised text — only notation.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>E = mc<sup>2</sup></p>", "render": true,
     "mdn": "sup", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements"
   },
@@ -215,7 +215,7 @@
     "use": "For visual salience with no urgency — keywords in a summary, names in a review.",
     "avoid": "If it's genuinely important or urgent, that's strong.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>The winning entry was a <b>sourdough rye</b> from Rotterdam.</p>", "render": true,
     "mdn": "b", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-b-element"
   },
@@ -225,7 +225,7 @@
     "use": "Almost never; its one idiomatic modern use is the proper-name mark in Chinese text.",
     "avoid": "Never underline links' lookalikes with it, and never use it for emphasis — readers assume underlines are links.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p lang='zh-Hans'><u>北京</u>是中国的首都。</p>", "render": true,
     "mdn": "u", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-u-element"
   },
@@ -265,7 +265,7 @@
     "use": "Only when no semantic inline element fits and you need a hook for lang, translate, id, or microdata.",
     "avoid": "A span without an attribute justifying it is a defect; check for a real element first.",
     "attributes": ["lang / translate / id — the usual justifications"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>The imprint <span translate='no'>Field Guide</span> keeps its name in every locale.</p>", "render": true,
     "mdn": "span", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element"
   },
@@ -275,7 +275,7 @@
     "use": "Poems, postal addresses, song lyrics — where the break carries meaning.",
     "avoid": "Never for spacing between blocks; that's margins in CSS.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>Markup is meaning,<br>styling is skin.</p>", "render": true,
     "mdn": "br", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element"
   },
@@ -285,7 +285,7 @@
     "use": "In long URLs, file paths, and identifiers so they can wrap at sensible points.",
     "avoid": "Not a substitute for CSS overflow-wrap on general prose.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p><code>https://html-tags.com/<wbr>tags/<wbr>wbr.html</code></p>", "render": true,
     "mdn": "wbr", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-wbr-element"
   }

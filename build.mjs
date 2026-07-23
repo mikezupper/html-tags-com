@@ -35,7 +35,7 @@ const BADGE = {
   limited: "Experimental — limited availability",
 };
 const EXAMPLE_TITLES = {
-  "demo.html": "the full-vocabulary field guide",
+  "field-guide.html": "the full-vocabulary field guide",
   "recipe.html": "the recipe example",
   "glossary.html": "the glossary example",
   "terminal-manual.html": "the CLI manual example",
@@ -150,7 +150,7 @@ ${t.snippet}
 
   let exampleLink = "";
   if (t.example) {
-    const href = t.example === "demo.html" ? "../demo.html" : `../examples/${t.example}`;
+    const href = t.example === "field-guide.html" ? "../field-guide.html" : `../examples/${t.example}`;
     exampleLink = `\n          <li><a href="${href}">See it used in context in `
       + `${EXAMPLE_TITLES[t.example]}</a></li>`;
   }
@@ -310,7 +310,7 @@ ${SITE_FOOTER}
 }
 
 function sitemap(tags) {
-  const urls = [`${BASE}/`, `${BASE}/tags/`, `${BASE}/cheatsheet.html`, `${BASE}/demo.html`,
+  const urls = [`${BASE}/`, `${BASE}/tags/`, `${BASE}/cheatsheet.html`, `${BASE}/field-guide.html`,
     `${BASE}/examples/`];
   const examples = readdirSync(join(ROOT, "static", "examples"))
     .filter((f) => f.endsWith(".html") && f !== "index.html").sort();

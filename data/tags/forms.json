@@ -55,7 +55,7 @@
     "use": "Inside a button that is the first child of select, activated by CSS appearance: base-select — enables rich styled selects with native behavior.",
     "avoid": "Experimental and Chromium-first; frameworks re-rendering option content won't auto-update the mirrored clone.",
     "attributes": [],
-    "baseline": "limited", "example": "demo.html",
+    "baseline": "limited", "example": "field-guide.html",
     "snippet": "<select>\n  <button>\n    <selectedcontent></selectedcontent>\n  </button>\n  <option>🍎 Apple</option>\n  <option>🍊 Orange</option>\n</select>", "render": false,
     "mdn": "selectedcontent", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-selectedcontent-element"
   },

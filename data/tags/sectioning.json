@@ -5,7 +5,7 @@
     "use": "Exactly one per page, wrapping everything that is the page's actual subject; give it an id so the skip link can target it.",
     "avoid": "Never more than one visible main, and never put site chrome (nav, banners) inside it.",
     "attributes": ["id — skip-link target"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<main id='main'>\n  <article>…the page's subject…</article>\n</main>", "render": false,
     "mdn": "main", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element"
   },
@@ -25,7 +25,7 @@
     "use": "As the page contentinfo landmark (direct child of body, one only) or scoped per article for attribution.",
     "avoid": "Contact info inside it belongs in an address element, not bare paragraphs.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<footer>\n  <p><small>© 2026 Field Guide. Licensed CC BY 4.0.</small></p>\n</footer>", "render": true,
     "mdn": "footer", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-footer-element"
   },
@@ -35,7 +35,7 @@
     "use": "For navigation users will want to jump to; when a page has several, distinguish them with aria-label (Primary, Breadcrumb, Pagination).",
     "avoid": "Not every group of links is a nav — a list of footer links or in-prose links usually isn't.",
     "attributes": ["aria-label — distinguishes multiple navs"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<nav aria-label='Primary'>\n  <ul>\n    <li><a href='/' aria-current='page'>Home</a></li>\n    <li><a href='/tags/'>Tags</a></li>\n  </ul>\n</nav>", "render": true,
     "mdn": "nav", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-nav-element"
   },
@@ -55,7 +55,7 @@
     "use": "When content forms a titled chunk of a larger whole; bind it to its heading with aria-labelledby.",
     "avoid": "A section without a heading is a smell — use div for pure grouping, or restructure.",
     "attributes": ["aria-labelledby — points at the section's heading id"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<section aria-labelledby='method-h'>\n  <h2 id='method-h'>Method</h2>\n  <p>Mix, rest, bake.</p>\n</section>", "render": true,
     "mdn": "section", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-section-element"
   },
@@ -65,7 +65,7 @@
     "use": "When the page would still make complete sense with the block removed.",
     "avoid": "Don't use it for content the flow depends on, and label it (aria-labelledby) when it has a heading.",
     "attributes": ["aria-labelledby — points at the aside's heading"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<aside aria-labelledby='related-h'>\n  <h2 id='related-h'>Related reading</h2>\n  <ul><li><a href='/tags/section.html'>section vs article</a></li></ul>\n</aside>", "render": true,
     "mdn": "aside", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-aside-element"
   },
@@ -95,7 +95,7 @@
     "use": "One h1 per page; pick each level by outline depth, descending one step at a time.",
     "avoid": "Never choose a level for its font size, never skip levels going down, and never fake a heading with bold text.",
     "attributes": ["id — anchor target for deep links"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<h1>The page topic</h1>\n<h2>A chapter</h2>\n<h3>A subsection</h3>", "render": false,
     "mdn": "Heading_Elements", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements"
   },

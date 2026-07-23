@@ -5,7 +5,7 @@
     "use": "For every run of flowing text; keep one idea per paragraph.",
     "avoid": "No block content inside it (lists, figures, divs auto-close it and invalidate the document), and never use empty p elements for spacing.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>Markup is meaning; styling is skin.</p>", "render": true,
     "mdn": "p", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element"
   },
@@ -15,7 +15,7 @@
     "use": "Between prose passages where the subject pivots, like a scene change in a story.",
     "avoid": "Not a visual divider or underline — if you only want a line, that's CSS border, not markup.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<p>…and that concluded the experiment.</p>\n<hr>\n<p>Three years later, in another lab entirely…</p>", "render": true,
     "mdn": "hr", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-hr-element"
   },
@@ -65,7 +65,7 @@
     "use": "For toolbars and command palettes where each item is a button or action link.",
     "avoid": "Not for navigation menus (that's nav with a ul) — menu means 'things you do', not 'places you go'.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<menu>\n  <li><button type='button'>Copy</button></li>\n  <li><button type='button'>Share</button></li>\n</menu>", "render": true,
     "mdn": "menu", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-menu-element"
   },
@@ -75,7 +75,7 @@
     "use": "Only as a direct child of a list element; the value attribute overrides an ol item's number.",
     "avoid": "Never orphan an li outside a list — it violates the content model.",
     "attributes": ["value — overrides numbering in an ol"],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<ol start='41'>\n  <li>Answer everything</li>\n  <li value='50'>Jump the count</li>\n</ol>", "render": true,
     "mdn": "li", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-li-element"
   },
@@ -135,7 +135,7 @@
     "use": "Only when no semantic element fits: styling wrappers, dt/dd pair grouping inside dl, microdata scopes.",
     "avoid": "Every div in a finished document should be individually justifiable; reach for article, section, nav, aside, figure, or search first.",
     "attributes": [],
-    "baseline": "widely", "example": "demo.html",
+    "baseline": "widely", "example": "field-guide.html",
     "snippet": "<dl>\n  <div>\n    <dt>Wrapped pair</dt>\n    <dd>div is valid here purely to enable styling.</dd>\n  </div>\n</dl>", "render": true,
     "mdn": "div", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-div-element"
   }
