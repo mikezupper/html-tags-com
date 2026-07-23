@@ -1,0 +1,121 @@
+/* CRT phosphor theme — committed dark, monospace, keycap kbd, scanlines.
+   Inert until #css-toggle is checked. */
+@layer reset, tokens, base, components;
+
+@layer reset {
+  :root:has(#css-toggle:checked) {
+    & *, & *::before, & *::after { box-sizing: border-box; margin: 0; }
+    & input, & button { font: inherit; }
+  }
+}
+
+@layer tokens {
+  :root:has(#css-toggle:checked) {
+    color-scheme: dark; /* a terminal is dark; this theme commits */
+    --phosphor: oklch(85% 0.21 150);
+    --amber: oklch(80% 0.16 80);
+    --screen: oklch(16% 0.02 150);
+    --screen-raised: oklch(21% 0.025 150);
+    --text: oklch(88% 0.06 150);
+    --muted: color-mix(in oklch, var(--text) 55%, var(--screen));
+    --rule: color-mix(in oklch, var(--phosphor) 25%, var(--screen));
+    --space: clamp(1rem, 0.6rem + 1.4vw, 1.5rem);
+  }
+}
+
+@layer base {
+  :root:has(#css-toggle:checked) {
+    background: var(--screen);
+
+    & body {
+      color: var(--text);
+      font-family: ui-monospace, "Cascadia Code", "JetBrains Mono", Menlo, monospace;
+      font-size: clamp(0.92rem, 0.88rem + 0.2vw, 1.02rem);
+      line-height: 1.6;
+      max-inline-size: 50rem;
+      margin-inline: auto;
+      padding: var(--space);
+      /* Faint scanlines */
+      background-image: repeating-linear-gradient(
+        to bottom, transparent 0 2px, oklch(0% 0 0 / 0.12) 2px 3px);
+    }
+    & a { color: var(--amber); }
+    & :focus-visible { outline: 2px solid var(--phosphor); outline-offset: 2px; }
+    & ::selection { background: color-mix(in oklch, var(--phosphor) 35%, transparent); }
+    & body > a[href="#main"] {
+      position: absolute; inset-block-start: -100vb;
+      &:focus-visible { inset: var(--space) auto auto var(--space);
+        background: var(--screen-raised); padding: 0.5rem 1rem; }
+    }
+  }
+}
+
+@layer components {
+  :root:has(#css-toggle:checked) {
+    & body > header {
+      display: flex; flex-wrap: wrap; gap: var(--space); align-items: center;
+      border-block-end: 1px dashed var(--rule);
+      padding-block-end: var(--space);
+      margin-block-end: calc(var(--space) * 1.5);
+      color: var(--muted);
+      & nav { margin-inline-start: auto; }
+      & nav ul { display: flex; gap: 1rem; list-style: none; padding: 0; }
+      & label[for="css-toggle"] { font-size: 0.85em; }
+    }
+
+    & hgroup h1 {
+      color: var(--phosphor);
+      font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.2rem);
+      text-shadow: 0 0 14px color-mix(in oklch, var(--phosphor) 55%, transparent);
+      & code { color: inherit; background: none; }
+    }
+    & hgroup p { color: var(--muted); }
+
+    & section { margin-block: calc(var(--space) * 1.6); }
+    & h2 {
+      color: var(--phosphor); text-transform: uppercase; letter-spacing: 0.15em;
+      font-size: 1em;
+      &::before { content: "## "; color: var(--muted); }
+    }
+
+    & pre {
+      background: var(--screen-raised);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: var(--space);
+      overflow-x: auto;
+      margin-block: 0.8em;
+      box-shadow: inset 0 0 24px oklch(0% 0 0 / 0.35);
+    }
+    & code { color: var(--amber); }
+    & pre code { color: var(--text); }
+    & samp { color: var(--phosphor); }
+    & pre samp::before { content: ""; }
+    & var { color: oklch(80% 0.12 320); font-style: italic; }
+
+    /* Keycaps */
+    & kbd {
+      font-family: inherit;
+      background: linear-gradient(oklch(30% 0.02 150), oklch(24% 0.02 150));
+      border: 1px solid var(--rule);
+      border-block-end-width: 3px;
+      border-radius: 6px;
+      padding: 0.1em 0.5em;
+      font-size: 0.9em;
+      /* A wrapper kbd holding key-kbds loses its own chrome */
+      &:has(kbd) { background: none; border: none; padding: 0; }
+    }
+
+    & dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.6em 1.5em; }
+    & dt { color: var(--amber); }
+    & dd { color: color-mix(in oklch, var(--text) 85%, var(--screen)); }
+
+    & article > footer, & body > footer {
+      margin-block-start: calc(var(--space) * 2);
+      border-block-start: 1px dashed var(--rule);
+      padding-block-start: var(--space);
+      color: var(--muted); font-size: 0.9em;
+    }
+    & cite { color: var(--amber); font-style: normal; }
+  }
+}

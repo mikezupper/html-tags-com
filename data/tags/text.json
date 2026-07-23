@@ -1,0 +1,292 @@
+[
+  {
+    "slug": "a", "display": "a", "category": "Inline text semantics",
+    "summary": "A hyperlink — the element the web is named after.",
+    "use": "For navigation to a URL or fragment, with link text that predicts the destination; use rel to describe the relationship (external, license, author, nofollow).",
+    "avoid": "Never 'click here', never href='#' as a fake button (that's button), and never a link that does nothing.",
+    "attributes": ["href — destination URL or #fragment", "rel — relationship tokens", "hreflang — language of the target", "download — save instead of navigate"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<a href='https://developer.mozilla.org/en-US/docs/Web/HTML' rel='external'>MDN's HTML documentation</a>", "render": true,
+    "mdn": "a", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element"
+  },
+  {
+    "slug": "em", "display": "em", "category": "Inline text semantics",
+    "summary": "Stress emphasis that changes the meaning of the sentence.",
+    "use": "Where a speaker would stress the word: 'I <em>never</em> said that' differs from 'I never said <em>that</em>'.",
+    "avoid": "Not for italics-as-style (that's i or CSS) and not for importance (that's strong).",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p>Do <em>not</em> add more flour — the dough is supposed to be sticky.</p>", "render": true,
+    "mdn": "em", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element"
+  },
+  {
+    "slug": "strong", "display": "strong", "category": "Inline text semantics",
+    "summary": "Strong importance, seriousness, or urgency.",
+    "use": "For warnings and key facts the reader must not miss; nesting increases importance.",
+    "avoid": "Not for bold-as-style — attention without extra importance is b.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p><strong>Warning:</strong> the pan will be extremely hot.</p>", "render": true,
+    "mdn": "strong", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-strong-element"
+  },
+  {
+    "slug": "small", "display": "small", "category": "Inline text semantics",
+    "summary": "Side comments and small print: copyright lines, disclaimers, legal caveats.",
+    "use": "For fine print that qualifies the main content.",
+    "avoid": "Not for de-emphasizing whole blocks or just making text smaller — that's CSS.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p><small>© 2026 Field Guide. Prices include VAT.</small></p>", "render": true,
+    "mdn": "small", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-small-element"
+  },
+  {
+    "slug": "s", "display": "s", "category": "Inline text semantics",
+    "summary": "Content that is no longer accurate or relevant, struck through but kept visible.",
+    "use": "Old prices, sold-out notices, superseded facts that weren't formal 'edits'.",
+    "avoid": "For tracked document edits use del; for decoration use CSS text-decoration.",
+    "attributes": [],
+    "baseline": "widely", "example": "release-notes.html",
+    "snippet": "<p><s>$49.00</s> now $29.00</p>", "render": true,
+    "mdn": "s", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-s-element"
+  },
+  {
+    "slug": "cite", "display": "cite", "category": "Inline text semantics",
+    "summary": "The title of a creative work: book, article, film, specification, song.",
+    "use": "Around work titles wherever they're referenced, including blockquote attributions.",
+    "avoid": "Not for people's names — the spec is explicit that cite marks the work, not the author.",
+    "attributes": [],
+    "baseline": "widely", "example": "terminal-manual.html",
+    "snippet": "<p>See <cite>HTML: The Living Standard</cite> for the definitive rules.</p>", "render": true,
+    "mdn": "cite", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-cite-element"
+  },
+  {
+    "slug": "q", "display": "q", "category": "Inline text semantics",
+    "summary": "A short inline quotation with browser-supplied, locale-correct quotation marks.",
+    "use": "For quotes inside a sentence; the marks adapt to the lang attribute (compare German „…“ with English “…”).",
+    "avoid": "Don't type the quote characters yourself around a q, and use blockquote for block-level quotes.",
+    "attributes": ["cite — URL of the source"],
+    "baseline": "widely", "example": "world-poetry.html",
+    "snippet": "<p>The spec calls a section <q cite='https://html.spec.whatwg.org/'>a thematic grouping of content</q>.</p>", "render": true,
+    "mdn": "q", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-q-element"
+  },
+  {
+    "slug": "dfn", "display": "dfn", "category": "Inline text semantics",
+    "summary": "The defining instance of a term — the one place where the term is explained.",
+    "use": "On a term's first, defining mention; give it an id so other pages and passages can link to the definition.",
+    "avoid": "Only the defining occurrence gets dfn — later mentions are plain text or links back to it.",
+    "attributes": ["id — cross-reference anchor", "title — the term being defined, if the content isn't it"],
+    "baseline": "widely", "example": "glossary.html",
+    "snippet": "<p>A <dfn id='def-landmark'>landmark</dfn> is a region screen readers can jump to directly.</p>", "render": true,
+    "mdn": "dfn", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-dfn-element"
+  },
+  {
+    "slug": "abbr", "display": "abbr", "category": "Inline text semantics",
+    "summary": "An abbreviation or acronym, optionally with its expansion in title.",
+    "use": "Spell the term out on first use, then abbr for the rest; the title shows on hover and is available to assistive tech.",
+    "avoid": "Don't rely on title alone to convey essential meaning — touch users never see tooltips.",
+    "attributes": ["title — the full expansion"],
+    "baseline": "widely", "example": "glossary.html",
+    "snippet": "<p>The <abbr title='World Wide Web Consortium'>W3C</abbr> publishes accessibility guidance.</p>", "render": true,
+    "mdn": "abbr", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-abbr-element"
+  },
+  {
+    "slug": "ruby", "display": "ruby", "category": "Inline text semantics",
+    "summary": "Annotates base text with small readings above it — furigana, pinyin, pronunciation guides.",
+    "use": "For East Asian pronunciation annotations; pair with rt for the reading and rp for fallback parentheses.",
+    "avoid": "Not for tooltips or footnotes in Latin-script prose — it's a typographic convention, not a comment mechanism.",
+    "attributes": [],
+    "baseline": "widely", "example": "world-poetry.html",
+    "snippet": "<ruby lang='ja'>東<rp>(</rp><rt>とう</rt><rp>)</rp>京<rp>(</rp><rt>きょう</rt><rp>)</rp></ruby> (Tokyo)", "render": true,
+    "mdn": "ruby", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element"
+  },
+  {
+    "slug": "rt", "display": "rt", "category": "Inline text semantics",
+    "summary": "The ruby text — the small annotation rendered above (or beside) the base characters.",
+    "use": "Inside ruby, one rt per annotated run of base text.",
+    "avoid": "Only valid inside ruby.",
+    "attributes": [],
+    "baseline": "widely", "example": "world-poetry.html",
+    "snippet": "<ruby lang='ja'>漢<rt>kan</rt></ruby>", "render": true,
+    "mdn": "rt", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-rt-element"
+  },
+  {
+    "slug": "rp", "display": "rp", "category": "Inline text semantics",
+    "summary": "Fallback parentheses shown only by browsers that can't render ruby layout.",
+    "use": "Wrap the rt in a pair of rp elements containing '(' and ')' so the annotation degrades to '漢(kan)'.",
+    "avoid": "Only valid inside ruby, flanking rt.",
+    "attributes": [],
+    "baseline": "widely", "example": "world-poetry.html",
+    "snippet": "<ruby lang='ja'>漢<rp>(</rp><rt>kan</rt><rp>)</rp></ruby>", "render": true,
+    "mdn": "rp", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-rp-element"
+  },
+  {
+    "slug": "data", "display": "data", "category": "Inline text semantics",
+    "summary": "Pairs human-readable content with a machine-readable value.",
+    "use": "For SKUs, quantities, scores, IDs — anything a script or crawler should read precisely while humans read prose.",
+    "avoid": "For dates, times, and durations use time instead — it's the specialized form.",
+    "attributes": ["value — the machine-readable form (required)"],
+    "baseline": "widely", "example": "recipe.html",
+    "snippet": "<p>Add <data value='400'>400 g</data> rye flour.</p>", "render": true,
+    "mdn": "data", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-data-element"
+  },
+  {
+    "slug": "time", "display": "time", "category": "Inline text semantics",
+    "summary": "A date, time, or duration with a machine-readable datetime attribute.",
+    "use": "For every date and duration on a page — search engines read the datetime (2026-07-24, PT45M) while humans read the prose.",
+    "avoid": "Don't skip the datetime when the content isn't already machine-parseable, and don't use it for vague times ('the olden days').",
+    "attributes": ["datetime — ISO date, time, or duration"],
+    "baseline": "widely", "example": "recipe.html",
+    "snippet": "<p>Published <time datetime='2026-07-24'>July 24, 2026</time>; bake for <time datetime='PT45M'>45 minutes</time>.</p>", "render": true,
+    "mdn": "time", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element"
+  },
+  {
+    "slug": "code", "display": "code", "category": "Inline text semantics",
+    "summary": "A fragment of computer code: an element name, a function, a filename, a command.",
+    "use": "Inline for code tokens in prose; wrap in pre for block listings.",
+    "avoid": "Not for keyboard input (kbd), program output (samp), or placeholders (var) — each has its own element.",
+    "attributes": [],
+    "baseline": "widely", "example": "terminal-manual.html",
+    "snippet": "<p>Query it with <code>document.querySelector('main')</code>.</p>", "render": true,
+    "mdn": "code", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element"
+  },
+  {
+    "slug": "var", "display": "var", "category": "Inline text semantics",
+    "summary": "A variable or placeholder the reader is expected to substitute.",
+    "use": "In command synopses and math: 'replace <var>file</var> with your output path'.",
+    "avoid": "Not for italics — its meaning is 'this is a placeholder', nothing else.",
+    "attributes": [],
+    "baseline": "widely", "example": "terminal-manual.html",
+    "snippet": "<pre><code>sx --out <var>file</var> <var>input</var>…</code></pre>", "render": true,
+    "mdn": "var", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-var-element"
+  },
+  {
+    "slug": "samp", "display": "samp", "category": "Inline text semantics",
+    "summary": "Sample output from a program or system.",
+    "use": "For terminal output, error messages, and log lines — everything the computer said back.",
+    "avoid": "Not for code you type (code) or keys you press (kbd).",
+    "attributes": [],
+    "baseline": "widely", "example": "terminal-manual.html",
+    "snippet": "<p>The build prints <samp>3 files converted, 0 errors</samp> on success.</p>", "render": true,
+    "mdn": "samp", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-samp-element"
+  },
+  {
+    "slug": "kbd", "display": "kbd", "category": "Inline text semantics",
+    "summary": "User input — keystrokes, voice commands, menu selections.",
+    "use": "Nest one kbd per physical key inside an outer kbd for the whole chord: Ctrl+S becomes three elements.",
+    "avoid": "Not for code fragments — kbd is what the user does, code is what the program is.",
+    "attributes": [],
+    "baseline": "widely", "example": "terminal-manual.html",
+    "snippet": "<p>Save with <kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd>.</p>", "render": true,
+    "mdn": "kbd", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-kbd-element"
+  },
+  {
+    "slug": "sub", "display": "sub", "category": "Inline text semantics",
+    "summary": "Subscript text with typographic meaning.",
+    "use": "Chemistry (H₂O), math indices, footnote conventions that require subscripts.",
+    "avoid": "Not for styling small lowered text — only where subscript position is part of the notation.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p>Water is H<sub>2</sub>O.</p>", "render": true,
+    "mdn": "sub", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements"
+  },
+  {
+    "slug": "sup", "display": "sup", "category": "Inline text semantics",
+    "summary": "Superscript text with typographic meaning.",
+    "use": "Exponents (x²), ordinals in some languages, footnote markers.",
+    "avoid": "Not for styling raised text — only notation.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p>E = mc<sup>2</sup></p>", "render": true,
+    "mdn": "sup", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements"
+  },
+  {
+    "slug": "i", "display": "i", "category": "Inline text semantics",
+    "summary": "Text in an alternate voice or mood: taxonomy, ship names, foreign phrases, technical terms.",
+    "use": "Where convention italicizes without stress: <i lang='fr'>déjà vu</i> — and add lang for foreign phrases.",
+    "avoid": "If the meaning changes when read with stress, that's em, not i.",
+    "attributes": ["lang — language of a foreign phrase"],
+    "baseline": "widely", "example": "world-poetry.html",
+    "snippet": "<p>The French call it <i lang='fr'>un florilège</i>.</p>", "render": true,
+    "mdn": "i", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-i-element"
+  },
+  {
+    "slug": "b", "display": "b", "category": "Inline text semantics",
+    "summary": "Text drawn to the reader's attention without extra importance: keywords, product names, article leads.",
+    "use": "For visual salience with no urgency — keywords in a summary, names in a review.",
+    "avoid": "If it's genuinely important or urgent, that's strong.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p>The winning entry was a <b>sourdough rye</b> from Rotterdam.</p>", "render": true,
+    "mdn": "b", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-b-element"
+  },
+  {
+    "slug": "u", "display": "u", "category": "Inline text semantics",
+    "summary": "A non-textual annotation — the rare legitimate underline: misspelling marks, Chinese proper-name marks.",
+    "use": "Almost never; its one idiomatic modern use is the proper-name mark in Chinese text.",
+    "avoid": "Never underline links' lookalikes with it, and never use it for emphasis — readers assume underlines are links.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p lang='zh-Hans'><u>北京</u>是中国的首都。</p>", "render": true,
+    "mdn": "u", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-u-element"
+  },
+  {
+    "slug": "mark", "display": "mark", "category": "Inline text semantics",
+    "summary": "Text highlighted for contextual relevance — a search hit, a referenced passage.",
+    "use": "To mark why this passage matters right now: matched search terms, the line under discussion.",
+    "avoid": "Not decoration and not emphasis — the highlight must answer 'relevant to what?'.",
+    "attributes": [],
+    "baseline": "widely", "example": "help-center.html",
+    "snippet": "<p>…save the page for <mark>offline reading</mark>; there are no stylesheets…</p>", "render": true,
+    "mdn": "mark", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-mark-element"
+  },
+  {
+    "slug": "bdi", "display": "bdi", "category": "Inline text semantics",
+    "summary": "Bidirectional isolation: renders text of unknown direction without disturbing its surroundings.",
+    "use": "Around user-generated names and titles in lists — without it, an RTL name can visually swallow the number next to it.",
+    "avoid": "Not needed for text whose direction you already control with dir on a container.",
+    "attributes": [],
+    "baseline": "widely", "example": "world-poetry.html",
+    "snippet": "<p>Top contributor: <bdi>أورى</bdi> — 12 edits</p>", "render": true,
+    "mdn": "bdi", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-bdi-element"
+  },
+  {
+    "slug": "bdo", "display": "bdo", "category": "Inline text semantics",
+    "summary": "Bidirectional override: forces a run of text to render in an explicit direction.",
+    "use": "Rarely — only when you must override the Unicode bidi algorithm deliberately.",
+    "avoid": "For isolating unknown-direction text use bdi; for whole blocks use the dir attribute.",
+    "attributes": ["dir — ltr or rtl (required)"],
+    "baseline": "widely", "example": "world-poetry.html",
+    "snippet": "<p><bdo dir='rtl'>this renders right-to-left</bdo></p>", "render": true,
+    "mdn": "bdo", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-bdo-element"
+  },
+  {
+    "slug": "span", "display": "span", "category": "Inline text semantics",
+    "summary": "The generic inline container with no meaning — the inline counterpart of div.",
+    "use": "Only when no semantic inline element fits and you need a hook for lang, translate, id, or microdata.",
+    "avoid": "A span without an attribute justifying it is a defect; check for a real element first.",
+    "attributes": ["lang / translate / id — the usual justifications"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p>The imprint <span translate='no'>Field Guide</span> keeps its name in every locale.</p>", "render": true,
+    "mdn": "span", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element"
+  },
+  {
+    "slug": "br", "display": "br", "category": "Inline text semantics",
+    "summary": "A line break that is part of the content itself.",
+    "use": "Poems, postal addresses, song lyrics — where the break carries meaning.",
+    "avoid": "Never for spacing between blocks; that's margins in CSS.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p>Markup is meaning,<br>styling is skin.</p>", "render": true,
+    "mdn": "br", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element"
+  },
+  {
+    "slug": "wbr", "display": "wbr", "category": "Inline text semantics",
+    "summary": "A word-break opportunity inside an otherwise unbreakable token.",
+    "use": "In long URLs, file paths, and identifiers so they can wrap at sensible points.",
+    "avoid": "Not a substitute for CSS overflow-wrap on general prose.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<p><code>https://html-tags.com/<wbr>tags/<wbr>wbr.html</code></p>", "render": true,
+    "mdn": "wbr", "spec": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-wbr-element"
+  }
+]

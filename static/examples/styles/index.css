@@ -1,0 +1,130 @@
+/* Gallery hub theme. Inert until #css-toggle is checked — the default render
+   is the browser stylesheet, untouched. */
+@layer reset, tokens, base, components;
+
+@layer reset {
+  :root:has(#css-toggle:checked) {
+    & *, & *::before, & *::after { box-sizing: border-box; margin: 0; }
+    & img, & svg { display: block; max-inline-size: 100%; block-size: auto; }
+    & input, & button { font: inherit; }
+  }
+}
+
+@layer tokens {
+  :root:has(#css-toggle:checked) {
+    color-scheme: light dark;
+    --hue: 265;
+    --brand: oklch(58% 0.21 var(--hue));
+    --surface: light-dark(oklch(98.5% 0.006 var(--hue)), oklch(17% 0.02 var(--hue)));
+    --surface-raised: light-dark(oklch(100% 0 0), oklch(22% 0.025 var(--hue)));
+    --text: light-dark(oklch(24% 0.03 var(--hue)), oklch(93% 0.012 var(--hue)));
+    --text-muted: color-mix(in oklch, var(--text) 62%, var(--surface));
+    --border: color-mix(in oklch, var(--text) 14%, var(--surface));
+    --space: clamp(1rem, 0.6rem + 1.4vw, 1.6rem);
+    --radius: 14px;
+    --shadow: 0 1px 2px oklch(20% 0.04 var(--hue) / 0.08),
+              0 10px 28px oklch(20% 0.04 var(--hue) / 0.12);
+  }
+}
+
+@layer base {
+  :root:has(#css-toggle:checked) {
+    background: var(--surface);
+    accent-color: var(--brand);
+
+    & body {
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      line-height: 1.55;
+      max-inline-size: 68rem;
+      margin-inline: auto;
+      padding: var(--space);
+    }
+    & h1, & h2 { text-wrap: balance; line-height: 1.12; }
+    & p, & dd { text-wrap: pretty; }
+    & a { color: var(--brand); }
+    & :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+    & ::selection { background: color-mix(in oklch, var(--brand) 28%, transparent); }
+
+    & body > a[href="#main"] {
+      position: absolute;
+      inset-block-start: -100vb;
+      &:focus-visible { inset: var(--space) auto auto var(--space);
+        background: var(--surface-raised); padding: 0.5rem 1rem;
+        border-radius: var(--radius); box-shadow: var(--shadow); }
+    }
+  }
+}
+
+@layer components {
+  :root:has(#css-toggle:checked) {
+    /* Header chrome */
+    & body > header {
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--space);
+      padding-block-end: var(--space);
+      border-block-end: 1px solid var(--border);
+      margin-block-end: calc(var(--space) * 1.5);
+
+      & > p:first-child { font-weight: 700; letter-spacing: 0.02em; }
+      & nav { margin-inline-start: auto; }
+      & nav ul { display: flex; gap: 1rem; list-style: none; padding: 0; }
+    }
+
+    /* The toggle itself becomes a pill switch once active */
+    & label[for="css-toggle"] { color: var(--text-muted); font-size: 0.9em; }
+    & #css-toggle { inline-size: 1.15rem; block-size: 1.15rem; }
+
+    /* Hero */
+    & article > header h1 {
+      font-size: clamp(1.9rem, 1.4rem + 2.4vw, 3rem);
+      background: linear-gradient(90deg in oklch,
+        var(--brand), oklch(from var(--brand) l c calc(h + 70)));
+      background-clip: text;
+      color: transparent;
+      margin-block-end: 0.35em;
+    }
+    & article > header p { color: var(--text-muted); max-inline-size: 55ch; }
+
+    /* The dl of examples becomes a card grid; each dt/dd pair is a div card */
+    & dl {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+      gap: var(--space);
+      margin-block: calc(var(--space) * 1.5);
+    }
+    & dl > div {
+      background: var(--surface-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space);
+      box-shadow: var(--shadow);
+      display: grid; gap: 0.5rem; align-content: start;
+    }
+    & dt { font-size: 1.1rem; font-weight: 700; }
+    & dt a { text-decoration: none;
+      &:hover { text-decoration: underline; text-underline-offset: 0.2em; } }
+    & dd { color: var(--text-muted); font-size: 0.95em; }
+    & code {
+      font-size: 0.85em;
+      background: color-mix(in oklch, var(--brand) 10%, var(--surface));
+      padding: 0.1em 0.35em; border-radius: 5px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      & dl > div { transition: translate 180ms ease-out, box-shadow 180ms ease-out; }
+      & dl > div:has(a:hover) { translate: 0 -3px; }
+    }
+
+    & body > footer {
+      margin-block-start: calc(var(--space) * 2);
+      padding-block-start: var(--space);
+      border-block-start: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}

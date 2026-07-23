@@ -1,0 +1,136 @@
+/* Bakery parchment theme — warm, serif, counter-decorated steps.
+   Inert until #css-toggle is checked. */
+@layer reset, tokens, base, components;
+
+@layer reset {
+  :root:has(#css-toggle:checked) {
+    & *, & *::before, & *::after { box-sizing: border-box; margin: 0; }
+    & img { display: block; max-inline-size: 100%; block-size: auto; }
+    & input, & button { font: inherit; }
+  }
+}
+
+@layer tokens {
+  :root:has(#css-toggle:checked) {
+    color-scheme: light dark;
+    --hue: 75;
+    --crust: oklch(55% 0.11 var(--hue));
+    --surface: light-dark(oklch(96.5% 0.025 90), oklch(20% 0.02 80));
+    --surface-raised: light-dark(oklch(99% 0.015 90), oklch(25% 0.025 80));
+    --text: light-dark(oklch(28% 0.04 60), oklch(92% 0.02 85));
+    --text-muted: color-mix(in oklch, var(--text) 60%, var(--surface));
+    --border: color-mix(in oklch, var(--crust) 35%, var(--surface));
+    --space: clamp(1rem, 0.6rem + 1.4vw, 1.5rem);
+  }
+}
+
+@layer base {
+  :root:has(#css-toggle:checked) {
+    background: var(--surface);
+
+    & body {
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+      line-height: 1.6;
+      max-inline-size: 44rem;
+      margin-inline: auto;
+      padding: var(--space);
+    }
+    & h1, & h2 { font-weight: 650; text-wrap: balance; line-height: 1.15; }
+    & p, & li, & dd, & figcaption { text-wrap: pretty; }
+    & a { color: oklch(from var(--crust) calc(l - 0.12) c h); }
+    & :focus-visible { outline: 2px solid var(--crust); outline-offset: 2px; }
+
+    & body > a[href="#main"] {
+      position: absolute; inset-block-start: -100vb;
+      &:focus-visible { inset: var(--space) auto auto var(--space);
+        background: var(--surface-raised); padding: 0.5rem 1rem; }
+    }
+  }
+}
+
+@layer components {
+  :root:has(#css-toggle:checked) {
+    & body > header {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space);
+      border-block-end: 3px double var(--border);
+      padding-block-end: var(--space);
+      margin-block-end: calc(var(--space) * 1.5);
+      font-family: system-ui, sans-serif;
+      & > p:first-child { font-weight: 700; }
+      & nav { margin-inline-start: auto; }
+      & nav ul { display: flex; gap: 1rem; list-style: none; padding: 0; }
+      & label[for="css-toggle"] { color: var(--text-muted); font-size: 0.85em; }
+    }
+
+    & hgroup h1 {
+      font-size: clamp(2rem, 1.5rem + 2.4vw, 3rem);
+      color: oklch(from var(--crust) calc(l - 0.18) calc(c + 0.02) h);
+    }
+    & hgroup p { font-style: italic; color: var(--text-muted); }
+    & article > header > p:last-child {
+      font-family: system-ui, sans-serif; font-size: 0.85em;
+      color: var(--text-muted); margin-block-start: 0.6em;
+    }
+
+    & section { margin-block: calc(var(--space) * 1.6); }
+    & h2 {
+      font-variant: small-caps; letter-spacing: 0.06em;
+      border-block-end: 1px solid var(--border);
+      padding-block-end: 0.25em; margin-block-end: 0.7em;
+    }
+
+    /* Ingredients: wheat-bullet list */
+    & ul { list-style: none; padding: 0; display: grid; gap: 0.45em; }
+    & ul li { padding-inline-start: 1.5em; position: relative; }
+    & ul li::before {
+      content: "✦"; position: absolute; inset-inline-start: 0.1em;
+      color: var(--crust);
+    }
+
+    /* Steps: big circled counters */
+    & ol { list-style: none; counter-reset: step; padding: 0; display: grid; gap: 1em; }
+    & ol li {
+      counter-increment: step;
+      padding-inline-start: 3.2em; position: relative; min-block-size: 2.4em;
+    }
+    & ol li::before {
+      content: counter(step);
+      position: absolute; inset-inline-start: 0; inset-block-start: 0.1em;
+      inline-size: 2.2em; block-size: 2.2em;
+      display: grid; place-content: center;
+      background: var(--crust);
+      color: oklch(98% 0.01 90);
+      border-radius: 50%;
+      font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.9em;
+    }
+
+    & time, & data { color: oklch(from var(--crust) calc(l - 0.15) c h); font-weight: 600; }
+
+    & figure {
+      background: var(--surface-raised);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: var(--space); display: grid; gap: 0.6em; justify-items: center;
+      & img { border-radius: 8px; }
+      & figcaption { font-style: italic; font-size: 0.9em; color: var(--text-muted); }
+    }
+
+    /* Nutrition: ledger table look */
+    & dl {
+      display: grid; grid-template-columns: max-content 1fr;
+      gap: 0.4em 1.2em; align-items: baseline;
+      background: var(--surface-raised);
+      border: 1px solid var(--border); border-radius: 12px; padding: var(--space);
+      & dt { font-weight: 700; font-family: system-ui, sans-serif; font-size: 0.85em; }
+      & dd { text-align: end; border-block-end: 1px dotted var(--border); }
+    }
+
+    & article > footer, & body > footer {
+      margin-block-start: calc(var(--space) * 1.5);
+      padding-block-start: var(--space);
+      border-block-start: 3px double var(--border);
+      color: var(--text-muted); font-size: 0.9em;
+    }
+  }
+}

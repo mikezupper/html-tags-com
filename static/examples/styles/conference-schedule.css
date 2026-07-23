@@ -1,0 +1,129 @@
+/* Conference-brand theme — vivid gradient banner, zebra table, time badges.
+   Inert until #css-toggle is checked. */
+@layer reset, tokens, base, components;
+
+@layer reset {
+  :root:has(#css-toggle:checked) {
+    & *, & *::before, & *::after { box-sizing: border-box; margin: 0; }
+    & input, & button { font: inherit; }
+  }
+}
+
+@layer tokens {
+  :root:has(#css-toggle:checked) {
+    color-scheme: light dark;
+    --hue: 20;
+    --brand: oklch(62% 0.21 var(--hue));
+    --brand-2: oklch(65% 0.19 calc(var(--hue) + 60));
+    --surface: light-dark(oklch(98.5% 0.005 var(--hue)), oklch(17% 0.015 var(--hue)));
+    --surface-raised: light-dark(oklch(100% 0 0), oklch(22% 0.02 var(--hue)));
+    --text: light-dark(oklch(23% 0.02 var(--hue)), oklch(93% 0.01 var(--hue)));
+    --muted: color-mix(in oklch, var(--text) 60%, var(--surface));
+    --rule: color-mix(in oklch, var(--text) 14%, var(--surface));
+    --stripe: color-mix(in oklch, var(--brand) 6%, var(--surface));
+    --space: clamp(1rem, 0.6rem + 1.4vw, 1.6rem);
+  }
+}
+
+@layer base {
+  :root:has(#css-toggle:checked) {
+    background: var(--surface);
+
+    & body {
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      font-size: clamp(0.98rem, 0.94rem + 0.2vw, 1.1rem);
+      line-height: 1.55;
+      max-inline-size: 62rem;
+      margin-inline: auto;
+      padding: var(--space);
+    }
+    & a { color: var(--brand); }
+    & :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+    & body > a[href="#main"] {
+      position: absolute; inset-block-start: -100vb;
+      &:focus-visible { inset: var(--space) auto auto var(--space);
+        background: var(--surface-raised); padding: 0.5rem 1rem; border-radius: 8px; }
+    }
+  }
+}
+
+@layer components {
+  :root:has(#css-toggle:checked) {
+    & body > header {
+      display: flex; flex-wrap: wrap; gap: var(--space); align-items: center;
+      padding-block-end: var(--space);
+      margin-block-end: var(--space);
+      & > p:first-child { font-weight: 800; letter-spacing: 0.03em;
+        color: var(--brand); }
+      & nav { margin-inline-start: auto; }
+      & nav ul { display: flex; gap: 1rem; list-style: none; padding: 0; }
+      & label[for="css-toggle"] { color: var(--muted); font-size: 0.85em; }
+    }
+
+    /* Gradient banner */
+    & article > header {
+      background: linear-gradient(120deg in oklch, var(--brand), var(--brand-2));
+      color: oklch(99% 0.01 var(--hue));
+      border-radius: 16px;
+      padding: calc(var(--space) * 1.6);
+      margin-block-end: calc(var(--space) * 1.5);
+      & h1 { font-size: clamp(1.7rem, 1.3rem + 2vw, 2.6rem); text-wrap: balance;
+        line-height: 1.1; }
+      & p { opacity: 0.92; margin-block-start: 0.4em; }
+      & time { font-weight: 700; }
+    }
+
+    & article > p { max-inline-size: 65ch; color: var(--muted); text-wrap: pretty; }
+
+    /* The schedule table */
+    & table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      margin-block: var(--space);
+      background: var(--surface-raised);
+      border-radius: 12px;
+      overflow: clip;
+      box-shadow: 0 1px 2px oklch(20% 0.05 var(--hue) / 0.08),
+                  0 8px 24px oklch(20% 0.05 var(--hue) / 0.10);
+    }
+    & caption {
+      caption-side: top; text-align: start;
+      font-weight: 700; font-variant: small-caps; letter-spacing: 0.05em;
+      color: var(--muted); padding-block-end: 0.6em;
+    }
+    & thead th {
+      background: color-mix(in oklch, var(--brand) 14%, var(--surface-raised));
+      text-align: start; padding: 0.8em 1em;
+      border-block-end: 2px solid var(--brand);
+    }
+    & tbody tr:nth-child(even) { background: var(--stripe); }
+    & td, & tbody th, & tfoot th, & tfoot td {
+      padding: 0.8em 1em; border-block-end: 1px solid var(--rule);
+      vertical-align: top; text-align: start;
+    }
+    & tbody th time, & tfoot time {
+      display: inline-block;
+      background: var(--brand); color: oklch(99% 0.01 var(--hue));
+      padding: 0.15em 0.6em; border-radius: 999px;
+      font-size: 0.85em; font-weight: 700;
+    }
+    & tbody th { white-space: nowrap; color: var(--muted); font-weight: 500; }
+    & td[colspan] { font-style: italic; }
+    & tfoot { font-weight: 700; }
+    & tfoot tr > * { border-block-end: none; }
+
+    & section { margin-block: calc(var(--space) * 1.6); }
+    & h2 { font-size: 1.3rem; margin-block-end: 0.5em; }
+    & dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.5em 1.4em; }
+    & dt { font-weight: 700; color: var(--brand); }
+
+    & article > footer, & body > footer {
+      margin-block-start: calc(var(--space) * 1.5);
+      border-block-start: 1px solid var(--rule);
+      padding-block-start: var(--space);
+      color: var(--muted); font-size: 0.9em;
+      & address { font-style: normal; }
+    }
+  }
+}

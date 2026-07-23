@@ -1,0 +1,117 @@
+/* Dictionary-print theme — hanging indents, small caps, a drop cap.
+   Inert until #css-toggle is checked. */
+@layer reset, tokens, base, components;
+
+@layer reset {
+  :root:has(#css-toggle:checked) {
+    & *, & *::before, & *::after { box-sizing: border-box; margin: 0; }
+    & input, & button { font: inherit; }
+  }
+}
+
+@layer tokens {
+  :root:has(#css-toggle:checked) {
+    color-scheme: light dark;
+    --hue: 230;
+    --ink: light-dark(oklch(25% 0.03 var(--hue)), oklch(92% 0.012 var(--hue)));
+    --paper: light-dark(oklch(97.5% 0.005 90), oklch(19% 0.015 var(--hue)));
+    --accent: oklch(48% 0.14 var(--hue));
+    --muted: color-mix(in oklch, var(--ink) 58%, var(--paper));
+    --rule: color-mix(in oklch, var(--ink) 18%, var(--paper));
+    --space: clamp(1rem, 0.6rem + 1.4vw, 1.5rem);
+  }
+}
+
+@layer base {
+  :root:has(#css-toggle:checked) {
+    background: var(--paper);
+
+    & body {
+      color: var(--ink);
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-size: clamp(1.02rem, 0.97rem + 0.25vw, 1.15rem);
+      line-height: 1.55;
+      max-inline-size: 46rem;
+      margin-inline: auto;
+      padding: var(--space);
+    }
+    & a { color: var(--accent); text-underline-offset: 0.18em; }
+    & :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    & body > a[href="#main"] {
+      position: absolute; inset-block-start: -100vb;
+      &:focus-visible { inset: var(--space) auto auto var(--space);
+        background: var(--paper); padding: 0.5rem 1rem; border: 1px solid var(--rule); }
+    }
+  }
+}
+
+@layer components {
+  :root:has(#css-toggle:checked) {
+    & body > header {
+      font-family: system-ui, sans-serif;
+      display: grid; gap: 0.6rem;
+      border-block-end: 2px solid var(--ink);
+      padding-block-end: var(--space);
+      margin-block-end: calc(var(--space) * 1.5);
+      & > p:first-child { font-variant: small-caps; letter-spacing: 0.12em; }
+      & label[for="css-toggle"] { color: var(--muted); font-size: 0.85em; }
+      & nav ul { display: flex; gap: 0.8rem; list-style: none; padding: 0; }
+      /* Letter navigation as index tabs */
+      & nav[aria-label="Glossary sections"] ul { gap: 0.4rem; }
+      & nav[aria-label="Glossary sections"] a {
+        display: grid; place-content: center;
+        inline-size: 2.2rem; block-size: 2.2rem;
+        border: 1px solid var(--rule); border-radius: 50%;
+        text-decoration: none; font-weight: 700;
+        &:hover { background: color-mix(in oklch, var(--accent) 12%, var(--paper)); }
+      }
+    }
+
+    & article > header h1 {
+      font-size: clamp(1.8rem, 1.4rem + 2vw, 2.7rem);
+      text-wrap: balance; line-height: 1.1; margin-block-end: 0.4em;
+    }
+    & article > header p { color: var(--muted); text-wrap: pretty; }
+    @supports (initial-letter: 2) {
+      & article > header p::first-letter { initial-letter: 2; color: var(--accent);
+        padding-inline-end: 0.4rem; }
+    }
+
+    /* Letter sections: oversized index letter */
+    & section { margin-block: calc(var(--space) * 1.8); }
+    & h2 {
+      font-size: 3rem; line-height: 1; color: var(--accent);
+      border-block-end: 1px solid var(--rule);
+      margin-block-end: 0.4em;
+    }
+    & section { scroll-margin-block-start: var(--space); }
+
+    /* Entries: hanging-indent dictionary layout */
+    & dl { display: grid; gap: 1.1em; }
+    & dt { font-weight: 700; font-size: 1.08em; }
+    & dfn { font-style: normal; }
+    & dd {
+      padding-inline-start: 1.6em;
+      border-inline-start: 2px solid var(--rule);
+      color: color-mix(in oklch, var(--ink) 88%, var(--paper));
+      text-wrap: pretty;
+    }
+    & abbr[title] { text-decoration-color: var(--accent); cursor: help; }
+    & code {
+      font-size: 0.85em;
+      background: color-mix(in oklch, var(--accent) 8%, var(--paper));
+      padding: 0.08em 0.3em; border-radius: 4px;
+    }
+    /* Highlight an entry arrived at via a cross-reference link */
+    & dfn:target, & :target dfn {
+      background: color-mix(in oklch, var(--accent) 20%, transparent);
+    }
+
+    & article > footer, & body > footer {
+      margin-block-start: calc(var(--space) * 2);
+      border-block-start: 2px solid var(--ink);
+      padding-block-start: var(--space);
+      font-family: system-ui, sans-serif; font-size: 0.9em; color: var(--muted);
+    }
+  }
+}

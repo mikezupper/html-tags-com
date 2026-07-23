@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "table", "display": "table", "category": "Tables",
+    "summary": "Genuinely two-dimensional data — rows and columns that mean something together.",
+    "use": "For datasets where cells relate to both a row and a column header; always with caption and scoped headers.",
+    "avoid": "Never for layout — that war was won twenty years ago; use CSS grid.",
+    "attributes": [],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<table>\n  <caption>Loaves sold by weekday</caption>\n  <thead><tr><th scope='col'>Day</th><th scope='col'>Loaves</th></tr></thead>\n  <tbody><tr><th scope='row'>Monday</th><td>18</td></tr></tbody>\n</table>", "render": true,
+    "mdn": "table", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-table-element"
+  },
+  {
+    "slug": "caption", "display": "caption", "category": "Tables",
+    "summary": "The table's title, announced by screen readers before the data.",
+    "use": "First child of every table, saying what the dataset is — not how to read it.",
+    "avoid": "Don't substitute a heading above the table; the caption is programmatically bound to it.",
+    "attributes": [],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<table>\n  <caption>Quarterly revenue by region, 2026</caption>\n  <tr><th scope='col'>Region</th><th scope='col'>Q1</th></tr>\n</table>", "render": true,
+    "mdn": "caption", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-caption-element"
+  },
+  {
+    "slug": "colgroup", "display": "colgroup", "category": "Tables",
+    "summary": "Groups columns for shared attributes and lets rendering start before all rows parse.",
+    "use": "After caption, with col children spanning the table's columns.",
+    "avoid": "It styles columns structurally; per-cell semantics still live on th/td.",
+    "attributes": ["span — number of columns when no col children"],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<table>\n  <caption>Two grouped columns</caption>\n  <colgroup><col><col span='2'></colgroup>\n  <tr><th scope='col'>Item</th><th scope='col'>Q1</th><th scope='col'>Q2</th></tr>\n</table>", "render": true,
+    "mdn": "colgroup", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-colgroup-element"
+  },
+  {
+    "slug": "col", "display": "col", "category": "Tables",
+    "summary": "One column (or span of columns) inside a colgroup.",
+    "use": "To target columns for width or styling without touching every cell.",
+    "avoid": "Only valid inside colgroup; it holds no content.",
+    "attributes": ["span — how many columns this represents"],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<colgroup>\n  <col>\n  <col span='2'>\n</colgroup>", "render": false,
+    "mdn": "col", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-col-element"
+  },
+  {
+    "slug": "thead", "display": "thead", "category": "Tables",
+    "summary": "The block of rows holding the column headers.",
+    "use": "One per table, before tbody; makes the header row(s) repeat on printed pages and sticky-positionable.",
+    "avoid": "Header cells inside it still need scope='col' — thead alone doesn't associate them.",
+    "attributes": [],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<thead>\n  <tr><th scope='col'>Day</th><th scope='col'>Loaves</th></tr>\n</thead>", "render": false,
+    "mdn": "thead", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-thead-element"
+  },
+  {
+    "slug": "tbody", "display": "tbody", "category": "Tables",
+    "summary": "The block of rows holding the table's data.",
+    "use": "Explicitly wrap data rows; multiple tbody elements can group related row batches.",
+    "avoid": "Browsers insert one implicitly, but writing it keeps the structure honest and styleable.",
+    "attributes": [],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<tbody>\n  <tr><th scope='row'>Monday</th><td>18</td></tr>\n  <tr><th scope='row'>Tuesday</th><td>25</td></tr>\n</tbody>", "render": false,
+    "mdn": "tbody", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-tbody-element"
+  },
+  {
+    "slug": "tfoot", "display": "tfoot", "category": "Tables",
+    "summary": "The block of rows summarizing the table: totals, averages.",
+    "use": "After tbody, for totals rows; repeats at the bottom of printed pages.",
+    "avoid": "The summary row's label cell is a th scope='row' like any other.",
+    "attributes": [],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<tfoot>\n  <tr><th scope='row'>Total</th><td>131</td></tr>\n</tfoot>", "render": false,
+    "mdn": "tfoot", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-tfoot-element"
+  },
+  {
+    "slug": "tr", "display": "tr", "category": "Tables",
+    "summary": "One row of cells.",
+    "use": "Inside thead, tbody, or tfoot, holding th and td cells.",
+    "avoid": "Rows belong to row groups; keep data out of the header group.",
+    "attributes": [],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<tr>\n  <th scope='row'>EMEA</th>\n  <td>1.2M</td>\n  <td>1.4M</td>\n</tr>", "render": false,
+    "mdn": "tr", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-tr-element"
+  },
+  {
+    "slug": "th", "display": "th", "category": "Tables",
+    "summary": "A header cell that other cells reference for meaning.",
+    "use": "Always with scope (col or row); in irregular tables give each th an id and point data cells at them with headers.",
+    "avoid": "A th without scope leaves screen readers guessing which cells it governs.",
+    "attributes": ["scope — col | row | colgroup | rowgroup", "id — target for headers associations", "colspan / rowspan"],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<tr>\n  <th scope='col'>Region</th>\n  <th scope='col'>Revenue</th>\n</tr>", "render": false,
+    "mdn": "th", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-th-element"
+  },
+  {
+    "slug": "td", "display": "td", "category": "Tables",
+    "summary": "A data cell.",
+    "use": "For the values; in complex tables list its governing header ids in the headers attribute.",
+    "avoid": "If the cell labels other cells rather than holding data, it's a th.",
+    "attributes": ["headers — space-separated th ids", "colspan / rowspan"],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<td headers='slot-0900 col-structure'>Opening keynote</td>", "render": false,
+    "mdn": "td", "spec": "https://html.spec.whatwg.org/multipage/tables.html#the-td-element"
+  }
+]

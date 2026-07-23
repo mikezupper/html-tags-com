@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "img", "display": "img", "category": "Media & embedded content",
+    "summary": "An image, with alternative text as a first-class requirement.",
+    "use": "Always with alt (describing function in context, or alt='' when purely decorative), intrinsic width/height to prevent layout shift, and loading='lazy' below the fold.",
+    "avoid": "Never lazy-load the hero/LCP image, and never put text in images without mirroring it in alt.",
+    "attributes": ["src / srcset / sizes — sources and responsive selection", "alt — alternative text (required)", "width / height — intrinsic size", "loading — lazy or eager", "decoding — async", "fetchpriority — high for the LCP image"],
+    "baseline": "widely", "example": "recipe.html",
+    "snippet": "<img src='/img/loaf.jpg' alt='A dark rye loaf on a board' width='320' height='200' loading='lazy' decoding='async'>", "render": false,
+    "mdn": "img", "spec": "https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element"
+  },
+  {
+    "slug": "picture", "display": "picture", "category": "Media & embedded content",
+    "summary": "Wraps source elements and an img for art direction and format negotiation.",
+    "use": "To serve AVIF/WebP with fallback, or different crops per viewport; the inner img carries alt and dimensions.",
+    "avoid": "For plain resolution switching alone, srcset/sizes on img is enough — picture is for format or art changes.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<picture>\n  <source type='image/avif' srcset='/img/loaf.avif'>\n  <source type='image/webp' srcset='/img/loaf.webp'>\n  <img src='/img/loaf.jpg' alt='A dark rye loaf' width='320' height='200'>\n</picture>", "render": false,
+    "mdn": "picture", "spec": "https://html.spec.whatwg.org/multipage/embedded-content.html#the-picture-element"
+  },
+  {
+    "slug": "source", "display": "source", "category": "Media & embedded content",
+    "summary": "A media resource candidate inside picture, audio, or video.",
+    "use": "One per format or condition, ordered best-first; the browser takes the first it supports.",
+    "avoid": "Only valid inside picture, audio, or video; it renders nothing on its own.",
+    "attributes": ["srcset / src — the resource", "type — MIME type", "media — condition (picture only)"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<video controls width='320' height='180'>\n  <source src='/media/intro.webm' type='video/webm'>\n  <source src='/media/intro.mp4' type='video/mp4'>\n</video>", "render": false,
+    "mdn": "source", "spec": "https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element"
+  },
+  {
+    "slug": "audio", "display": "audio", "category": "Media & embedded content",
+    "summary": "An embedded sound player.",
+    "use": "With controls, preload='none' so megabytes don't download speculatively, and a transcript adjacent (details works well).",
+    "avoid": "Never autoplay with sound; provide fallback content with a download link inside the element.",
+    "attributes": ["controls — show native UI", "preload — none | metadata | auto", "loop / muted"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<audio controls preload='none'>\n  <source src='/media/episode.ogg' type='audio/ogg'>\n  <a href='/media/episode.ogg'>Download the recording</a>\n</audio>", "render": false,
+    "mdn": "audio", "spec": "https://html.spec.whatwg.org/multipage/media.html#the-audio-element"
+  },
+  {
+    "slug": "video", "display": "video", "category": "Media & embedded content",
+    "summary": "An embedded video player.",
+    "use": "With controls, intrinsic width/height, preload='none' or 'metadata', nested sources per format, and a captions track — non-negotiable for speech.",
+    "avoid": "Never autoplay with sound; muted looping background video still needs prefers-reduced-motion respect.",
+    "attributes": ["controls / width / height", "preload — none | metadata | auto", "poster — preview image", "muted / loop / playsinline"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<video controls width='320' height='180' preload='none'>\n  <source src='/media/intro.webm' type='video/webm'>\n  <track kind='captions' src='/media/intro.en.vtt' srclang='en' label='English' default>\n</video>", "render": false,
+    "mdn": "video", "spec": "https://html.spec.whatwg.org/multipage/media.html#the-video-element"
+  },
+  {
+    "slug": "track", "display": "track", "category": "Media & embedded content",
+    "summary": "Timed text for media: captions, subtitles, descriptions, chapters.",
+    "use": "kind='captions' with srclang and label on every video containing speech; default preselects one.",
+    "avoid": "Subtitles translate; captions also transcribe sound effects — pick the kind honestly.",
+    "attributes": ["kind — captions | subtitles | descriptions | chapters | metadata", "src — WebVTT file", "srclang / label / default"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<track kind='captions' src='/media/intro.en.vtt' srclang='en' label='English' default>", "render": false,
+    "mdn": "track", "spec": "https://html.spec.whatwg.org/multipage/media.html#the-track-element"
+  },
+  {
+    "slug": "map", "display": "map", "category": "Media & embedded content",
+    "summary": "Defines a client-side image map of clickable regions.",
+    "use": "Named via the name attribute and referenced from an img's usemap; contains area elements.",
+    "avoid": "For complex interactive graphics, inline SVG with real links usually beats image maps today.",
+    "attributes": ["name — referenced by usemap='#name'"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<img src='/img/regions.png' alt='Sales regions' usemap='#regions' width='320' height='200'>\n<map name='regions'>\n  <area shape='rect' coords='0,0,160,200' href='/west.html' alt='Western region'>\n</map>", "render": false,
+    "mdn": "map", "spec": "https://html.spec.whatwg.org/multipage/image-maps.html#the-map-element"
+  },
+  {
+    "slug": "area", "display": "area", "category": "Media & embedded content",
+    "summary": "One clickable region inside an image map.",
+    "use": "With shape/coords defining the hit area and alt text describing the destination — each area is a link for assistive tech.",
+    "avoid": "Never omit alt; an unlabeled area is an unlabeled link.",
+    "attributes": ["shape — rect | circle | poly", "coords — geometry", "href / alt — destination and label"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<area shape='circle' coords='80,50,32' href='#media' alt='The circle — links to the media section'>", "render": false,
+    "mdn": "area", "spec": "https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element"
+  },
+  {
+    "slug": "iframe", "display": "iframe", "category": "Media & embedded content",
+    "summary": "A nested browsing context — another document embedded in this one.",
+    "use": "For embeds you can't inline (maps, videos, sandboxed widgets); always with title for assistive tech and loading='lazy' below the fold.",
+    "avoid": "Every iframe costs a document fetch and layout — use sparingly, and sandbox untrusted content.",
+    "attributes": ["src / srcdoc — the embedded document", "title — accessible name (required in practice)", "loading — lazy", "sandbox / allow — capability restrictions", "width / height"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<iframe title='A minimal embedded document' srcdoc='&lt;p&gt;Hello from inside.&lt;/p&gt;' width='320' height='80' loading='lazy'></iframe>", "render": true,
+    "mdn": "iframe", "spec": "https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element"
+  },
+  {
+    "slug": "embed", "display": "embed", "category": "Media & embedded content",
+    "summary": "A legacy integration point for external content and plugins.",
+    "use": "Almost never in new work — historic plugin content only.",
+    "avoid": "Modern replacements exist for everything it did: iframe, video, audio, img, or object for PDFs.",
+    "attributes": ["src / type — resource and MIME type", "width / height"],
+    "baseline": "widely", "example": null,
+    "snippet": "<embed type='application/pdf' src='/docs/spec.pdf' width='600' height='400'>", "render": false,
+    "mdn": "embed", "spec": "https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-embed-element"
+  },
+  {
+    "slug": "object", "display": "object", "category": "Media & embedded content",
+    "summary": "An external resource treated as an image, nested context, or plugin resource — with real fallback content.",
+    "use": "Occasionally for PDFs or SVG-with-fallback, since its children render when the resource can't.",
+    "avoid": "For images use img/picture; for pages use iframe — object is the niche case.",
+    "attributes": ["data — resource URL", "type — MIME type", "width / height"],
+    "baseline": "widely", "example": null,
+    "snippet": "<object data='/docs/menu.pdf' type='application/pdf' width='600' height='400'>\n  <p>The menu as a <a href='/docs/menu.pdf'>downloadable PDF</a>.</p>\n</object>", "render": false,
+    "mdn": "object", "spec": "https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-object-element"
+  },
+  {
+    "slug": "svg", "display": "svg", "category": "Media & embedded content",
+    "summary": "Inline scalable vector graphics — resolution-independent drawings in the DOM.",
+    "use": "Inline for icons and diagrams; give meaningful graphics role='img' and an internal title element for the accessible name.",
+    "avoid": "Purely decorative inline SVG duplicating adjacent text gets aria-hidden='true' instead.",
+    "attributes": ["viewBox — coordinate system", "role='img' + <title> — accessibility", "width / height"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40' role='img' aria-label='Three ascending bars'>\n  <rect x='10' y='22' width='24' height='14'/>\n  <rect x='48' y='12' width='24' height='24'/>\n  <rect x='86' y='4' width='24' height='32'/>\n</svg>", "render": true,
+    "mdn": "svg", "spec": "https://html.spec.whatwg.org/multipage/embedded-content-other.html#svg-0"
+  },
+  {
+    "slug": "math", "display": "math", "category": "Media & embedded content",
+    "summary": "MathML Core — native mathematical notation in the browser.",
+    "use": "For formulas that should be text: selectable, searchable, styleable, read correctly by screen readers.",
+    "avoid": "Don't screenshot equations into images — they can't reflow, scale, or be read aloud.",
+    "attributes": ["display — block | inline"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<math display='inline'>\n  <mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow>\n</math>", "render": true,
+    "mdn": "math", "spec": "https://html.spec.whatwg.org/multipage/embedded-content-other.html#mathml"
+  },
+  {
+    "slug": "canvas", "display": "canvas", "category": "Media & embedded content",
+    "summary": "A scriptable bitmap surface for dynamic graphics, games, and visualizations.",
+    "use": "Only with JavaScript driving it; provide fallback content inside, and prefer SVG when the graphic is document-like.",
+    "avoid": "Canvas content is invisible to assistive technology and search — never render text or UI into it that has no DOM counterpart.",
+    "attributes": ["width / height — bitmap dimensions"],
+    "baseline": "widely", "example": null,
+    "snippet": "<canvas width='320' height='160'>\n  <p>Fallback: your browser can't render the chart; the data is in the table below.</p>\n</canvas>", "render": false,
+    "mdn": "canvas", "spec": "https://html.spec.whatwg.org/multipage/canvas.html#the-canvas-element"
+  },
+  {
+    "slug": "fencedframe", "display": "fencedframe", "category": "Media & embedded content",
+    "summary": "An iframe variant with the communication channel cut — the embedder can load content but never learn what was shown.",
+    "use": "Privacy Sandbox ad slots chosen by Protected Audience auctions or Shared Storage; the config is set via JavaScript, never a URL.",
+    "avoid": "Chromium-only and experimental; for any general embedding use iframe.",
+    "attributes": ["width / height", "allow — Privacy Sandbox policies only", "title — accessible name"],
+    "baseline": "limited", "example": "demo.html",
+    "snippet": "<fencedframe width='640' height='320' title='Advertisement, selected privately'></fencedframe>", "render": false,
+    "mdn": "fencedframe", "spec": "https://wicg.github.io/fenced-frame/#the-fencedframe-element"
+  }
+]

@@ -1,0 +1,124 @@
+/* Tag reference pages + explorer + 404 — extends the shared design system. */
+@import url("system.css");
+
+@layer components {
+  :root:has(#css-toggle:checked) {
+    & body { max-inline-size: 48rem; }
+
+    /* ---- Tag title block ---- */
+    & hgroup h1 {
+      font-size: var(--step-3);
+      & code { background: none; padding: 0; color: var(--brand-strong); }
+    }
+    & hgroup p { color: var(--text-muted); font-size: var(--step-1);
+      font-weight: 400; margin-block-start: 0.4em; line-height: 1.45; }
+
+    /* ---- Baseline / category chips (Material tonal) ---- */
+    & article > header > p:last-child {
+      margin-block-start: 1em;
+      display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+      color: var(--text-muted); font-size: var(--step--1);
+      & data {
+        display: inline-flex; align-items: center; gap: 0.45em;
+        border-radius: 999px; padding: 0.3em 0.9em;
+        font-weight: 650;
+        background: var(--brand-tint);
+        border: 1px solid var(--brand-tint-border);
+        color: var(--brand-strong);
+        &::before { content: ""; inline-size: 0.5em; block-size: 0.5em;
+          border-radius: 50%; background: currentcolor; }
+      }
+      & data[value="limited"] {
+        --chip: oklch(62% 0.14 75);
+        background: color-mix(in oklch, var(--chip) 16%, var(--surface));
+        border-color: color-mix(in oklch, var(--chip) 45%, var(--surface));
+        color: oklch(from var(--chip) calc(l - 0.18) c h);
+      }
+    }
+
+    /* ---- Sections ---- */
+    & section { margin-block: calc(var(--space) * 1.8); }
+    & h2 {
+      font-size: var(--step-1);
+      margin-block-end: 0.55em;
+      display: flex; align-items: center; gap: 0.5em;
+      &::after { content: ""; flex: 1; block-size: 1px;
+        background: var(--hairline); }
+    }
+
+    & dl {
+      display: grid; grid-template-columns: max-content 1fr;
+      gap: 0.55em 1.4em; align-items: baseline;
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      padding: var(--space);
+      box-shadow: var(--shadow-1);
+      & dt { font-weight: 600; }
+      & dd { color: var(--text-muted); }
+    }
+
+    /* ---- Live example frame ---- */
+    & figure {
+      display: grid; gap: 0.9em;
+      & > div {
+        background: var(--surface-raised);
+        border: 1px solid var(--brand-tint-border);
+        border-radius: var(--radius);
+        padding: var(--space);
+        box-shadow: var(--shadow-1);
+        position: relative;
+        overflow: clip;
+        &::before {
+          content: "live";
+          position: absolute; inset-block-start: 0; inset-inline-end: 0;
+          font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--brand-strong);
+          background: var(--brand-tint);
+          padding: 0.25em 0.8em;
+          border-end-start-radius: var(--radius-s);
+        }
+      }
+      & figcaption { color: var(--text-muted); font-size: var(--step--1); }
+    }
+
+    /* ---- Reference links ---- */
+    & section ul { padding-inline-start: 1.2em; display: grid; gap: 0.5em;
+      & li::marker { color: var(--brand); } }
+
+    /* ---- Explorer page: tonal chip grid ---- */
+    & article > ul {
+      list-style: none; padding: 0;
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-block-end: var(--space);
+      & a { text-decoration: none;
+        & code {
+          display: inline-block;
+          background: var(--surface-raised);
+          border: 1px solid var(--hairline);
+          border-radius: 10px;
+          padding: 0.4em 0.75em; font-size: 0.92em;
+          box-shadow: var(--shadow-1);
+          transition: translate 140ms ease-out, background 140ms ease-out,
+                      border-color 140ms ease-out, box-shadow 140ms ease-out;
+        }
+        &:hover code {
+          background: var(--brand-tint);
+          border-color: var(--brand-tint-border);
+          color: var(--brand-strong);
+          translate: 0 -2px;
+          box-shadow: var(--shadow-2);
+        }
+      }
+    }
+    /* Explorer family headings */
+    & article > h2 {
+      margin-block: 1.6em 0.6em;
+      font-size: var(--step--1); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--text-muted);
+      &::after { content: none; }
+    }
+  }
+}

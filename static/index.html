@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML Tags — every element, when to use it, shown live</title>
+  <meta name="description" content="The reference for modern semantic HTML: all 112 living elements with when-to-use guidance, live examples, Baseline status, and links to MDN and the spec. Zero JavaScript required to read it.">
+  <link rel="canonical" href="https://html-tags.com/">
+  <link rel="stylesheet" href="styles/landing.css">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="HTML Tags — every element, when to use it, shown live">
+  <meta property="og:description" content="The reference for modern semantic HTML: all 112 living elements with when-to-use guidance, live examples, and Baseline status.">
+  <meta property="og:url" content="https://html-tags.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  { "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebSite",
+        "name": "HTML Tags",
+        "url": "https://html-tags.com/",
+        "description": "The reference for modern semantic HTML: every living element with when-to-use guidance, live examples, and Baseline status." },
+      { "@type": "Organization",
+        "name": "html-tags.com",
+        "url": "https://html-tags.com/",
+        "sameAs": ["https://github.com/mikezupper/html-tags-com", "https://github.com/mikezupper/semantic-html-skill"] },
+      { "@type": "ItemList",
+        "name": "HTML element families",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Document structure", "url": "https://html-tags.com/tags/" },
+          { "@type": "ListItem", "position": 2, "name": "Sectioning and landmarks", "url": "https://html-tags.com/tags/" },
+          { "@type": "ListItem", "position": 3, "name": "Grouping content", "url": "https://html-tags.com/tags/" },
+          { "@type": "ListItem", "position": 4, "name": "Inline text semantics", "url": "https://html-tags.com/tags/" },
+          { "@type": "ListItem", "position": 5, "name": "Media and embedded content", "url": "https://html-tags.com/tags/" },
+          { "@type": "ListItem", "position": 6, "name": "Tables", "url": "https://html-tags.com/tags/" },
+          { "@type": "ListItem", "position": 7, "name": "Forms", "url": "https://html-tags.com/tags/" },
+          { "@type": "ListItem", "position": 8, "name": "Interactive elements", "url": "https://html-tags.com/tags/" } ] },
+      { "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What is semantic HTML?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Semantic HTML chooses elements for what content means, not how it should look: article for self-contained compositions, nav for navigation, time for dates. Screen readers, search engines, reader modes, and AI agents all consume that meaning directly." } },
+          { "@type": "Question", "name": "How many HTML elements are there?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The HTML Living Standard defines roughly 112 living elements as of 2026, from html to the experimental fencedframe, selectedcontent, and geolocation. Typical pages use about fifteen — the neglected hundred are what this site documents." } },
+          { "@type": "Question", "name": "Why does semantic HTML matter for SEO?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Crawlers reconstruct topic structure from headings, article boundaries, time freshness signals, and structured data. Semantic markup is the ranking signal — a page of anonymous divs gives a search engine nothing to understand." } } ] }
+    ] }
+  </script>
+</head>
+<body>
+  <a href="#main">Skip to main content</a>
+  <header>
+    <p><span translate="no">html-tags.com</span></p>
+    <p>
+      <input type="checkbox" id="css-toggle" checked>
+      <label for="css-toggle">Styled view</label>
+    </p>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="tags/">All tags</a></li>
+        <li><a href="examples/">Examples</a></li>
+        <li><a href="demo.html">Field guide</a></li>
+        <li><a href="cheatsheet.html">Cheat sheet</a></li>
+        <li><a href="https://github.com/mikezupper/html-tags-com" rel="external">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article>
+      <header>
+        <hgroup>
+          <h1>Every HTML tag. When to use it. Shown live.</h1>
+          <p>The reference for modern semantic HTML — 112 living elements with
+          when-to-use guidance, honest when-not-to warnings, Baseline support
+          status, and examples you can see working.</p>
+        </hgroup>
+        <p>
+          <a href="tags/">Browse all tags</a> ·
+          <a href="examples/">See the examples</a> ·
+          <a href="cheatsheet.html">Print the cheat sheet</a>
+        </p>
+      </header>
+
+      <section aria-labelledby="eotw-h">
+        <h2 id="eotw-h">Element of the week</h2>
+        <p>This week (<span id="eotw-week">every week</span>) we spotlight
+        <a id="eotw-link" href="tags/output.html"><code>&lt;output&gt;</code></a> —
+        one of the hundred elements most pages never use. Read when it applies,
+        when it doesn't, and see it working. A different element is chosen
+        deterministically each week.</p>
+      </section>
+
+      <section aria-labelledby="grid-h">
+        <h2 id="grid-h">Every tag, by family</h2>
+        <p>Each page answers the same four questions: what it means, when to use
+        it, when <em>not</em> to, and what the markup looks like — with its
+        Baseline status and links to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements" rel="external">MDN</a>
+        and the <a href="https://html.spec.whatwg.org/multipage/" rel="external">HTML Living Standard</a>.</p>
+        <div id="tag-grid">
+        <!-- TAG-GRID:START -->
+        <!-- TAG-GRID:END -->
+        </div>
+      </section>
+
+      <section aria-labelledby="soup-h">
+        <h2 id="soup-h">Div soup vs. semantic HTML</h2>
+        <p>Both blocks below render the same card. One means nothing to a screen
+        reader, a search engine, or an AI agent; the other is self-describing.
+        Identical pixels — different meaning.</p>
+        <div id="soup-compare">
+          <figure>
+            <pre><code>&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;div class="title"&gt;Overnight Rye&lt;/div&gt;
+    &lt;div class="meta"&gt;July 24, 2026&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="body"&gt;
+    &lt;div&gt;Four ingredients…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <figcaption>Div soup: eight anonymous boxes. The date is a string, the
+            title is a styled div, nothing is navigable.</figcaption>
+          </figure>
+          <figure>
+            <pre><code>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h3&gt;Overnight Rye&lt;/h3&gt;
+    &lt;p&gt;&lt;time datetime="2026-07-24"&gt;July 24, 2026&lt;/time&gt;&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;p&gt;Four ingredients…&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+            <figcaption>Semantic: a self-contained <code>&lt;article&gt;</code>
+            with a real heading and a machine-readable date. Fewer elements, more
+            meaning.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section aria-labelledby="examples-h">
+        <h2 id="examples-h">Learn by example</h2>
+        <p>Eight realistic pages, each built around one family of elements — a
+        recipe that teaches <code>&lt;time&gt;</code> durations, a man page that
+        teaches <code>&lt;kbd&gt;</code> and <code>&lt;samp&gt;</code>, a
+        multilingual anthology that teaches <code>&lt;ruby&gt;</code> and
+        bidirectional text. Every one has a styled view you can switch off to see
+        the raw semantic document underneath, and every one validates with zero
+        errors.</p>
+        <ul id="example-cards">
+          <li><a href="examples/recipe.html">Recipe card</a> — durations &amp; quantities</li>
+          <li><a href="examples/glossary.html">Glossary</a> — definition machinery</li>
+          <li><a href="examples/terminal-manual.html">CLI manual</a> — computer text</li>
+          <li><a href="examples/conference-schedule.html">Conference schedule</a> — complex tables</li>
+          <li><a href="examples/world-poetry.html">Poetry anthology</a> — internationalization</li>
+          <li><a href="examples/help-center.html">Help center</a> — script-free interactivity</li>
+          <li><a href="examples/product-order.html">Product order</a> — forms &amp; microdata</li>
+          <li><a href="examples/release-notes.html">Release notes</a> — edit tracking</li>
+        </ul>
+        <p>Or read the <a href="demo.html">full-vocabulary field guide</a> — one
+        CSS-free page where every element demonstrates itself.</p>
+      </section>
+
+      <section aria-labelledby="agents-h">
+        <h2 id="agents-h">Building with AI agents?</h2>
+        <p>This site ships as an <strong>agent skill</strong>: a single instruction
+        file that teaches a coding agent the element-selection ladder, the ARIA
+        rules, the i18n discipline, and the full 2026 vocabulary — so generated
+        markup comes out semantic by default. Install it for Claude Code:</p>
+        <pre><code>mkdir -p ~/.claude/skills/semantic-html
+curl -o ~/.claude/skills/semantic-html/SKILL.md \
+  https://raw.githubusercontent.com/mikezupper/semantic-html-skill/main/skills.md</code></pre>
+        <p>It's plain Markdown — paste it into any agent's system prompt. Get it
+        from <a href="https://github.com/mikezupper/semantic-html-skill" rel="external">the repository</a>.</p>
+      </section>
+
+      <section aria-labelledby="authority-h">
+        <h2 id="authority-h">The sources we defer to</h2>
+        <p>This site is a field guide, not a spec. For normative rules and
+        exhaustive attribute tables, go where we go:</p>
+        <ul>
+          <li><a href="https://html.spec.whatwg.org/multipage/" rel="external">The HTML Living Standard</a> — the source of truth every page here links into.</li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" rel="external">MDN Web Docs</a> — the encyclopedia; every tag page links its MDN entry.</li>
+          <li><a href="https://webstatus.dev/" rel="external">Baseline on webstatus.dev</a> — the support data behind our badges.</li>
+          <li><a href="https://validator.w3.org/nu/" rel="external">The Nu HTML Checker</a> — validate your own markup the way our CI validates ours.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p><small>Every page on this site validates against the
+    <a href="https://validator.w3.org/nu/">Nu HTML Checker</a> with zero errors and
+    zero warnings — <a href="https://github.com/mikezupper/html-tags-com/actions">checked in CI on every commit</a>.
+    View source: the markup <em>is</em> the documentation.
+    <a href="https://github.com/mikezupper/html-tags-com">Contribute on GitHub</a>.</small></p>
+    <p><small>Verified against the
+    <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a> on
+    <time datetime="2026-07-24">2026-07-24</time>. The only script on this page
+    picks the element of the week. Text licensed
+    <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>.</small></p>
+  </footer>
+
+  <script>
+    (() => {
+      const links = document.querySelectorAll("#tag-grid a");
+      const target = document.querySelector("#eotw-link");
+      if (!links.length || !target) return;
+      // ISO week number, UTC, as the deterministic seed
+      const now = new Date();
+      const d = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+      d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+      const week = Math.ceil((((d - Date.UTC(d.getUTCFullYear(), 0, 1)) / 864e5) + 1) / 7);
+      const seed = `${d.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+      let h = 0;
+      for (const ch of seed) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+      const pick = links[h % links.length];
+      target.href = pick.getAttribute("href");
+      target.innerHTML = pick.querySelector("code").outerHTML;
+      document.querySelector("#eotw-week").textContent = seed;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "html", "display": "html", "category": "Document structure",
+    "summary": "The root element of every HTML document; all other elements descend from it.",
+    "use": "Exactly once per document, carrying lang and dir so assistive technology and search engines know the document's language and direction.",
+    "avoid": "Never omit lang — screen readers will guess the pronunciation engine and often guess wrong.",
+    "attributes": ["lang — BCP 47 language tag (e.g. en, pt-BR)", "dir — ltr, rtl, or auto"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<html lang='en' dir='ltr'>…</html>", "render": false,
+    "mdn": "html", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-html-element"
+  },
+  {
+    "slug": "head", "display": "head", "category": "Document structure",
+    "summary": "The container for machine-readable metadata: title, charset, viewport, links, and structured data.",
+    "use": "Once per document; put charset within the first 1024 bytes and the title early.",
+    "avoid": "Don't put renderable content here — browsers will relocate it into body and your document becomes invalid.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<head>\n  <meta charset='utf-8'>\n  <title>Page title</title>\n</head>", "render": false,
+    "mdn": "head", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-head-element"
+  },
+  {
+    "slug": "title", "display": "title", "category": "Document structure",
+    "summary": "The document's name, shown in the browser tab, bookmarks, and search results.",
+    "use": "One per document, unique across your site, ~50–60 characters, most important words first.",
+    "avoid": "Don't stuff keywords or reuse one title site-wide — it is the single strongest on-page SEO signal.",
+    "attributes": [],
+    "baseline": "widely", "example": null,
+    "snippet": "<title>Overnight Rye Bread — Field Guide Kitchen</title>", "render": false,
+    "mdn": "title", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-title-element"
+  },
+  {
+    "slug": "base", "display": "base", "category": "Document structure",
+    "summary": "Sets the base URL for every relative URL in the document.",
+    "use": "Almost never — only when a document is deliberately served from multiple locations and must resolve assets against one canonical base.",
+    "avoid": "It rewrites fragment links too (#main skip links, SVG url(#id) references), silently breaking them; prefer correct relative paths.",
+    "attributes": ["href — the base URL", "target — default browsing context for links"],
+    "baseline": "widely", "example": null,
+    "snippet": "<base href='https://html-tags.com/docs/'>", "render": false,
+    "mdn": "base", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-base-element"
+  },
+  {
+    "slug": "link", "display": "link", "category": "Document structure",
+    "summary": "Connects the document to external resources: canonical URLs, stylesheets, icons, feeds, hreflang alternates, and resource hints.",
+    "use": "For rel=canonical on every page, rel=alternate hreflang for translations, rel=icon, and preconnect/preload performance hints.",
+    "avoid": "Don't preload what you don't use — unused hints waste bandwidth and get flagged by devtools.",
+    "attributes": ["rel — relationship (canonical, stylesheet, icon, alternate, preconnect…)", "href — target URL", "hreflang — language of the target"],
+    "baseline": "widely", "example": null,
+    "snippet": "<link rel='canonical' href='https://html-tags.com/tags/link.html'>", "render": false,
+    "mdn": "link", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element"
+  },
+  {
+    "slug": "meta", "display": "meta", "category": "Document structure",
+    "summary": "Metadata that no other element expresses: charset, viewport, description, Open Graph, robots directives.",
+    "use": "charset first in head, viewport for responsive rendering, one unique description (~150–160 chars) per page.",
+    "avoid": "Skip meta keywords (ignored since 2009) and only add robots when you need to restrict indexing.",
+    "attributes": ["charset — utf-8", "name/content — description, viewport, robots…", "property/content — Open Graph pairs"],
+    "baseline": "widely", "example": null,
+    "snippet": "<meta name='description' content='One compelling sentence describing this page.'>", "render": false,
+    "mdn": "meta", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element"
+  },
+  {
+    "slug": "style", "display": "style", "category": "Document structure",
+    "summary": "Embeds CSS directly in the document head.",
+    "use": "For small critical CSS inlined for performance, or single-file self-contained documents.",
+    "avoid": "For anything beyond trivial size, an external stylesheet caches independently of the HTML; and never use style as a substitute for semantic element choice.",
+    "attributes": ["media — conditional media query"],
+    "baseline": "widely", "example": null,
+    "snippet": "<style>\n  body { max-inline-size: 65ch; margin-inline: auto; }\n</style>", "render": false,
+    "mdn": "style", "spec": "https://html.spec.whatwg.org/multipage/semantics.html#the-style-element"
+  },
+  {
+    "slug": "body", "display": "body", "category": "Document structure",
+    "summary": "The sectioning root holding all renderable content.",
+    "use": "Once per document; keep all perceivable content inside landmark elements within it, with a skip link first.",
+    "avoid": "Don't scatter loose content directly in body — screen-reader users navigate by landmarks, and orphaned content is invisible to that navigation.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<body>\n  <a href='#main'>Skip to main content</a>\n  <header>…</header>\n  <main id='main'>…</main>\n  <footer>…</footer>\n</body>", "render": false,
+    "mdn": "body", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-body-element"
+  }
+]

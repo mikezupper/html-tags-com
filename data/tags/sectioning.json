@@ -1,0 +1,112 @@
+[
+  {
+    "slug": "main", "display": "main", "category": "Sectioning & landmarks",
+    "summary": "The document's unique dominant content region — the main landmark screen readers jump to.",
+    "use": "Exactly one per page, wrapping everything that is the page's actual subject; give it an id so the skip link can target it.",
+    "avoid": "Never more than one visible main, and never put site chrome (nav, banners) inside it.",
+    "attributes": ["id — skip-link target"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<main id='main'>\n  <article>…the page's subject…</article>\n</main>", "render": false,
+    "mdn": "main", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element"
+  },
+  {
+    "slug": "header", "display": "header", "category": "Sectioning & landmarks",
+    "summary": "Introductory content for the page or for any article/section — headings, bylines, intro nav.",
+    "use": "As the page banner (direct child of body, one only) or scoped inside each article/section for its own heading block.",
+    "avoid": "Don't treat it as a styling wrapper; it must introduce the region it belongs to.",
+    "attributes": [],
+    "baseline": "widely", "example": "release-notes.html",
+    "snippet": "<article>\n  <header>\n    <h2>Version 2.4.0</h2>\n    <p>Released <time datetime='2026-07-20'>July 20, 2026</time></p>\n  </header>\n</article>", "render": true,
+    "mdn": "header", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-header-element"
+  },
+  {
+    "slug": "footer", "display": "footer", "category": "Sectioning & landmarks",
+    "summary": "Closing content for the page or any article/section: authorship, related links, legal fine print.",
+    "use": "As the page contentinfo landmark (direct child of body, one only) or scoped per article for attribution.",
+    "avoid": "Contact info inside it belongs in an address element, not bare paragraphs.",
+    "attributes": [],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<footer>\n  <p><small>© 2026 Field Guide. Licensed CC BY 4.0.</small></p>\n</footer>", "render": true,
+    "mdn": "footer", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-footer-element"
+  },
+  {
+    "slug": "nav", "display": "nav", "category": "Sectioning & landmarks",
+    "summary": "A major navigation block: primary menu, table of contents, breadcrumbs, pagination.",
+    "use": "For navigation users will want to jump to; when a page has several, distinguish them with aria-label (Primary, Breadcrumb, Pagination).",
+    "avoid": "Not every group of links is a nav — a list of footer links or in-prose links usually isn't.",
+    "attributes": ["aria-label — distinguishes multiple navs"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<nav aria-label='Primary'>\n  <ul>\n    <li><a href='/' aria-current='page'>Home</a></li>\n    <li><a href='/tags/'>Tags</a></li>\n  </ul>\n</nav>", "render": true,
+    "mdn": "nav", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-nav-element"
+  },
+  {
+    "slug": "article", "display": "article", "category": "Sectioning & landmarks",
+    "summary": "A self-contained composition that would make sense on its own: a post, product card, comment, widget.",
+    "use": "When the chunk would stand alone in an RSS feed or search result; each gets its own heading, and articles nest (comments inside a post).",
+    "avoid": "Not for mere page chapters — that's section; not for grouping without standalone meaning — that's div.",
+    "attributes": [],
+    "baseline": "widely", "example": "release-notes.html",
+    "snippet": "<article>\n  <header><h2>Overnight Rye Bread</h2></header>\n  <p>Four ingredients, twelve hours of patience…</p>\n  <footer><address>kitchen@html-tags.com</address></footer>\n</article>", "render": true,
+    "mdn": "article", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-article-element"
+  },
+  {
+    "slug": "section", "display": "section", "category": "Sectioning & landmarks",
+    "summary": "A thematic grouping of content with a heading — a chapter of the current page.",
+    "use": "When content forms a titled chunk of a larger whole; bind it to its heading with aria-labelledby.",
+    "avoid": "A section without a heading is a smell — use div for pure grouping, or restructure.",
+    "attributes": ["aria-labelledby — points at the section's heading id"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<section aria-labelledby='method-h'>\n  <h2 id='method-h'>Method</h2>\n  <p>Mix, rest, bake.</p>\n</section>", "render": true,
+    "mdn": "section", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-section-element"
+  },
+  {
+    "slug": "aside", "display": "aside", "category": "Sectioning & landmarks",
+    "summary": "Content tangentially related to what surrounds it: pull quotes, related links, sidebars, callouts.",
+    "use": "When the page would still make complete sense with the block removed.",
+    "avoid": "Don't use it for content the flow depends on, and label it (aria-labelledby) when it has a heading.",
+    "attributes": ["aria-labelledby — points at the aside's heading"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<aside aria-labelledby='related-h'>\n  <h2 id='related-h'>Related reading</h2>\n  <ul><li><a href='/tags/section.html'>section vs article</a></li></ul>\n</aside>", "render": true,
+    "mdn": "aside", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-aside-element"
+  },
+  {
+    "slug": "address", "display": "address", "category": "Sectioning & landmarks",
+    "summary": "Contact information for the nearest article or for the document as a whole.",
+    "use": "In a page or article footer, wrapping the author's or organization's contact details.",
+    "avoid": "Not for arbitrary postal addresses in content — it means 'how to contact the responsible party', nothing else.",
+    "attributes": [],
+    "baseline": "widely", "example": "conference-schedule.html",
+    "snippet": "<address>\n  Field Guide Editors ·\n  <a href='mailto:editors@html-tags.com'>editors@html-tags.com</a>\n</address>", "render": true,
+    "mdn": "address", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-address-element"
+  },
+  {
+    "slug": "search", "display": "search", "category": "Sectioning & landmarks",
+    "summary": "A landmark wrapping search or filtering functionality — the semantic replacement for role='search'.",
+    "use": "Around the form (and results controls) for site search, filtering, or any find-things UI.",
+    "avoid": "It contains the search UI; it is not the input itself — that's input type='search' inside it.",
+    "attributes": [],
+    "baseline": "widely", "example": "help-center.html",
+    "snippet": "<search>\n  <form action='/search' method='get'>\n    <label for='q'>Search</label>\n    <input type='search' id='q' name='q'>\n    <button type='submit'>Go</button>\n  </form>\n</search>", "render": true,
+    "mdn": "search", "spec": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-search-element"
+  },
+  {
+    "slug": "h1-h6", "display": "h1–h6", "category": "Sectioning & landmarks",
+    "summary": "Six levels of section headings that form the document outline screen readers and crawlers navigate by.",
+    "use": "One h1 per page; pick each level by outline depth, descending one step at a time.",
+    "avoid": "Never choose a level for its font size, never skip levels going down, and never fake a heading with bold text.",
+    "attributes": ["id — anchor target for deep links"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<h1>The page topic</h1>\n<h2>A chapter</h2>\n<h3>A subsection</h3>", "render": false,
+    "mdn": "Heading_Elements", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements"
+  },
+  {
+    "slug": "hgroup", "display": "hgroup", "category": "Sectioning & landmarks",
+    "summary": "Groups a heading with its subtitle, tagline, or eyebrow paragraphs as one unit.",
+    "use": "When a heading has a subtitle that belongs to it — title plus tagline, version plus codename.",
+    "avoid": "Only p elements may accompany the single heading inside; a second heading level does not belong in an hgroup.",
+    "attributes": [],
+    "baseline": "widely", "example": "release-notes.html",
+    "snippet": "<hgroup>\n  <h2>The Semantic HTML Vocabulary</h2>\n  <p>A self-demonstrating field guide</p>\n</hgroup>", "render": true,
+    "mdn": "hgroup", "spec": "https://html.spec.whatwg.org/multipage/sections.html#the-hgroup-element"
+  }
+]

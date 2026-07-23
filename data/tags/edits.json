@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "ins", "display": "ins", "category": "Edits",
+    "summary": "Content added to the document after publication, kept visible as a tracked change.",
+    "use": "For corrections and additions to published content, stamped with datetime and a cite URL pointing at what prompted the change.",
+    "avoid": "Not for underlining (CSS) and not for content that was simply always there.",
+    "attributes": ["datetime — when the edit was made", "cite — URL explaining the change"],
+    "baseline": "widely", "example": "release-notes.html",
+    "snippet": "<p>The deadline is\n  <del datetime='2026-07-01'>July 1</del>\n  <ins datetime='2026-07-01'>July 15</ins>.</p>", "render": true,
+    "mdn": "ins", "spec": "https://html.spec.whatwg.org/multipage/edits.html#the-ins-element"
+  },
+  {
+    "slug": "del", "display": "del", "category": "Edits",
+    "summary": "Content removed from the document after publication, kept visible as a tracked change.",
+    "use": "Paired with ins for corrections where the record of what changed matters — changelogs, meeting minutes, errata.",
+    "avoid": "For content that is merely no longer accurate (an old price) but wasn't an 'edit', use s instead.",
+    "attributes": ["datetime — when the edit was made", "cite — URL explaining the change"],
+    "baseline": "widely", "example": "release-notes.html",
+    "snippet": "<p>Tickets cost <del datetime='2026-06-01'>$50</del> <ins datetime='2026-06-01'>$65</ins>.</p>", "render": true,
+    "mdn": "del", "spec": "https://html.spec.whatwg.org/multipage/edits.html#the-del-element"
+  }
+]

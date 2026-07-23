@@ -1,0 +1,151 @@
+/* Changelog-timeline theme — rail and dots, version badges, diff colors.
+   Inert until #css-toggle is checked. */
+@layer reset, tokens, base, components;
+
+@layer reset {
+  :root:has(#css-toggle:checked) {
+    & *, & *::before, & *::after { box-sizing: border-box; margin: 0; }
+    & input, & button { font: inherit; }
+  }
+}
+
+@layer tokens {
+  :root:has(#css-toggle:checked) {
+    color-scheme: light dark;
+    --hue: 300;
+    --brand: oklch(58% 0.19 var(--hue));
+    --surface: light-dark(oklch(98.5% 0.006 var(--hue)), oklch(16.5% 0.02 var(--hue)));
+    --surface-raised: light-dark(oklch(100% 0 0), oklch(21.5% 0.025 var(--hue)));
+    --text: light-dark(oklch(24% 0.025 var(--hue)), oklch(93% 0.01 var(--hue)));
+    --muted: color-mix(in oklch, var(--text) 60%, var(--surface));
+    --rule: color-mix(in oklch, var(--text) 14%, var(--surface));
+    --ins: light-dark(oklch(93% 0.06 150), oklch(35% 0.07 150));
+    --del: light-dark(oklch(93% 0.05 25), oklch(35% 0.07 25));
+    --space: clamp(1rem, 0.6rem + 1.4vw, 1.5rem);
+    --radius: 12px;
+  }
+}
+
+@layer base {
+  :root:has(#css-toggle:checked) {
+    background: var(--surface);
+
+    & body {
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      font-size: clamp(0.98rem, 0.94rem + 0.2vw, 1.08rem);
+      line-height: 1.55;
+      max-inline-size: 46rem;
+      margin-inline: auto;
+      padding: var(--space);
+    }
+    & a { color: var(--brand); }
+    & :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+    & body > a[href="#main"] {
+      position: absolute; inset-block-start: -100vb;
+      &:focus-visible { inset: var(--space) auto auto var(--space);
+        background: var(--surface-raised); padding: 0.5rem 1rem;
+        border-radius: var(--radius); }
+    }
+  }
+}
+
+@layer components {
+  :root:has(#css-toggle:checked) {
+    & body > header {
+      display: flex; flex-wrap: wrap; gap: var(--space); align-items: center;
+      padding-block-end: var(--space);
+      border-block-end: 1px solid var(--rule);
+      margin-block-end: calc(var(--space) * 1.5);
+      & > p:first-child { font-weight: 800; color: var(--brand); }
+      & nav { margin-inline-start: auto; }
+      & nav ul { display: flex; gap: 1rem; list-style: none; padding: 0; }
+      & label[for="css-toggle"] { color: var(--muted); font-size: 0.85em; }
+    }
+
+    & article > header h1 { font-size: clamp(1.6rem, 1.3rem + 1.6vw, 2.3rem); }
+    & article > header > p { color: var(--muted); text-wrap: pretty;
+      margin-block-start: 0.5em; }
+
+    /* Timeline: rail on the release list, dot per release */
+    & article > ol {
+      list-style: none; padding: 0;
+      margin-block: calc(var(--space) * 1.5);
+      border-inline-start: 3px solid
+        color-mix(in oklch, var(--brand) 45%, var(--rule));
+      display: grid; gap: calc(var(--space) * 1.5);
+    }
+    & article > ol > li {
+      position: relative;
+      padding-inline-start: calc(var(--space) * 1.6);
+      &::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: calc(-0.5rem - 1.5px);
+        inset-block-start: 0.5rem;
+        inline-size: 1rem; block-size: 1rem;
+        border-radius: 50%;
+        background: var(--brand);
+        border: 3px solid var(--surface);
+      }
+    }
+
+    & li article {
+      background: var(--surface-raised);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: var(--space);
+    }
+    & hgroup {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6em;
+      & h2 { font-size: 1.2rem; }
+      & h2 data {
+        font-family: ui-monospace, monospace;
+        background: var(--brand); color: oklch(98% 0.01 var(--hue));
+        padding: 0.1em 0.5em; border-radius: 6px; font-size: 0.9em;
+      }
+      & p { color: var(--muted); font-style: italic; font-size: 0.9em; }
+    }
+    & li article > header > p { color: var(--muted); font-size: 0.85em;
+      margin-block-start: 0.3em; }
+
+    & li article ul { margin-block-start: 0.8em; padding-inline-start: 1.2em;
+      display: grid; gap: 0.5em; }
+    & li article ul li::marker { color: var(--brand); }
+
+    /* Diff colors */
+    & ins {
+      background: var(--ins); text-decoration: none;
+      padding: 0.05em 0.25em; border-radius: 4px;
+      &::before { content: "+ "; font-weight: 700;
+        color: oklch(45% 0.12 150); }
+    }
+    & del {
+      background: var(--del);
+      padding: 0.05em 0.25em; border-radius: 4px;
+      &::before { content: "− "; font-weight: 700; text-decoration: none;
+        color: oklch(45% 0.14 25); }
+    }
+    & s { color: var(--muted); }
+
+    & code { font-size: 0.85em; font-family: ui-monospace, monospace;
+      background: color-mix(in oklch, var(--brand) 9%, var(--surface));
+      padding: 0.08em 0.3em; border-radius: 4px; }
+
+    & article > section {
+      background: color-mix(in oklch, var(--brand) 5%, var(--surface));
+      border: 1px dashed color-mix(in oklch, var(--brand) 35%, var(--rule));
+      border-radius: var(--radius); padding: var(--space);
+      & h2 { font-size: 1.1rem; margin-block-end: 0.4em; }
+      & p { text-wrap: pretty; font-size: 0.95em; }
+    }
+
+    & article > footer, & body > footer {
+      margin-block-start: calc(var(--space) * 1.5);
+      border-block-start: 1px solid var(--rule);
+      padding-block-start: var(--space);
+      color: var(--muted); font-size: 0.9em;
+      & address { font-style: normal; }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "form", "display": "form", "category": "Forms",
+    "summary": "An interactive form that submits user input to a URL.",
+    "use": "With action and method; GET for searches and filters (shareable URLs), POST for changes.",
+    "avoid": "Don't nest forms, and don't hijack submission with JS before the native behavior works.",
+    "attributes": ["action — where to submit", "method — get | post | dialog", "autocomplete — on/off default for the form"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<form action='/search' method='get'>\n  <label for='q'>Search</label>\n  <input type='search' id='q' name='q'>\n  <button type='submit'>Go</button>\n</form>", "render": true,
+    "mdn": "form", "spec": "https://html.spec.whatwg.org/multipage/forms.html#the-form-element"
+  },
+  {
+    "slug": "label", "display": "label", "category": "Forms",
+    "summary": "The caption of a form control, programmatically bound to it.",
+    "use": "Every control gets one — via for/id or by wrapping the control; clicking the label focuses the control.",
+    "avoid": "placeholder is not a label: it vanishes on input and fails contrast; title is not a label either.",
+    "attributes": ["for — the id of the labeled control"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<label for='email'>Email</label>\n<input type='email' id='email' name='email' autocomplete='email'>", "render": true,
+    "mdn": "label", "spec": "https://html.spec.whatwg.org/multipage/forms.html#the-label-element"
+  },
+  {
+    "slug": "input", "display": "input", "category": "Forms",
+    "summary": "The shape-shifting form control: 22 types from text to color to file.",
+    "use": "Pick the specific type (email, url, tel, date, number, range, search…) — each brings validation, the right mobile keyboard, and the right widget; add autocomplete tokens.",
+    "avoid": "Don't use type='text' for typed data, and don't suppress native validation only to rebuild it worse in JS.",
+    "attributes": ["type — the control kind", "name — submission key", "required / min / max / step / pattern / maxlength — constraints", "autocomplete — standard fill tokens", "inputmode / enterkeyhint — virtual keyboard hints", "list — datalist id"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<label for='qty'>Quantity</label>\n<input type='number' id='qty' name='qty' min='1' max='10' value='1' required>", "render": true,
+    "mdn": "input", "spec": "https://html.spec.whatwg.org/multipage/input.html#the-input-element"
+  },
+  {
+    "slug": "button", "display": "button", "category": "Forms",
+    "summary": "A button — focusable, keyboard-activatable, screen-reader-announced, for free.",
+    "use": "Always with an explicit type: submit, reset, or button; also the invoker for popovers via popovertarget and commands via commandfor.",
+    "avoid": "Never a div or a with onclick pretending to be a button; never omit type inside forms (default is submit).",
+    "attributes": ["type — submit | reset | button", "popovertarget — opens/closes a popover", "disabled", "form — associate with a form by id"],
+    "baseline": "widely", "example": "help-center.html",
+    "snippet": "<button type='button' popovertarget='hint'>What does this mean?</button>\n<div id='hint' popover><p>A popover, no JavaScript involved.</p></div>", "render": true,
+    "mdn": "button", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element"
+  },
+  {
+    "slug": "select", "display": "select", "category": "Forms",
+    "summary": "A dropdown of options, natively keyboard- and screen-reader-friendly.",
+    "use": "For choosing one (or with multiple, several) of a closed set; group related options with optgroup.",
+    "avoid": "Never rebuild it as a div listbox — you lose typeahead, mobile pickers, and AT support; style it with the customizable-select CSS instead.",
+    "attributes": ["name / required / multiple / size", "autocomplete — fill token"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<label for='edition'>Edition</label>\n<select id='edition' name='edition'>\n  <optgroup label='Available now'>\n    <option value='cloth' selected>Clothbound</option>\n    <option value='paper'>Paperback</option>\n  </optgroup>\n</select>", "render": true,
+    "mdn": "select", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element"
+  },
+  {
+    "slug": "selectedcontent", "display": "selectedcontent", "category": "Forms",
+    "summary": "Mirrors the chosen option's content into a customizable select's closed button.",
+    "use": "Inside a button that is the first child of select, activated by CSS appearance: base-select — enables rich styled selects with native behavior.",
+    "avoid": "Experimental and Chromium-first; frameworks re-rendering option content won't auto-update the mirrored clone.",
+    "attributes": [],
+    "baseline": "limited", "example": "demo.html",
+    "snippet": "<select>\n  <button>\n    <selectedcontent></selectedcontent>\n  </button>\n  <option>🍎 Apple</option>\n  <option>🍊 Orange</option>\n</select>", "render": false,
+    "mdn": "selectedcontent", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-selectedcontent-element"
+  },
+  {
+    "slug": "datalist", "display": "datalist", "category": "Forms",
+    "summary": "Native autocomplete suggestions for an input — suggestions, not restrictions.",
+    "use": "Link it from an input's list attribute; users can pick a suggestion or type anything else.",
+    "avoid": "If the value must come from the set, that's a select, not a datalist.",
+    "attributes": ["id — referenced by input list='…'"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<label for='topic'>Favorite element</label>\n<input type='text' id='topic' name='topic' list='elements'>\n<datalist id='elements'>\n  <option value='hgroup'></option>\n  <option value='output'></option>\n</datalist>", "render": true,
+    "mdn": "datalist", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-datalist-element"
+  },
+  {
+    "slug": "optgroup", "display": "optgroup", "category": "Forms",
+    "summary": "Groups related options under a label inside a select.",
+    "use": "When the option list has natural categories — the label renders as a non-selectable group heading.",
+    "avoid": "Only valid inside select; don't nest optgroups.",
+    "attributes": ["label — the group heading (required)", "disabled"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<select>\n  <optgroup label='Free'>\n    <option>Reader</option>\n  </optgroup>\n  <optgroup label='Paid'>\n    <option>Supporter</option>\n  </optgroup>\n</select>", "render": true,
+    "mdn": "optgroup", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-optgroup-element"
+  },
+  {
+    "slug": "option", "display": "option", "category": "Forms",
+    "summary": "One choice inside a select or datalist.",
+    "use": "With value when the submitted value differs from the visible text; selected preselects.",
+    "avoid": "Keep option content simple; rich content belongs to the customizable-select pattern.",
+    "attributes": ["value — submitted value", "selected / disabled"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<option value='cloth' selected>Clothbound</option>", "render": false,
+    "mdn": "option", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-option-element"
+  },
+  {
+    "slug": "textarea", "display": "textarea", "category": "Forms",
+    "summary": "Multi-line free-text input.",
+    "use": "With a label, rows/cols as a size hint, and maxlength when limits exist; field-sizing: content in CSS auto-grows it.",
+    "avoid": "Its initial value is its text content — mind stray whitespace between the tags.",
+    "attributes": ["rows / cols — size hint", "maxlength / minlength", "name / required / placeholder"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<label for='notes'>Notes</label>\n<textarea id='notes' name='notes' rows='3' maxlength='500'></textarea>", "render": true,
+    "mdn": "textarea", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element"
+  },
+  {
+    "slug": "output", "display": "output", "category": "Forms",
+    "summary": "The result of a calculation or user action, with built-in live-region behavior.",
+    "use": "For computed totals, scores, conversion results; its for attribute lists the inputs it derives from, and screen readers announce updates.",
+    "avoid": "Not for static prose — it means 'this value was produced by the page'.",
+    "attributes": ["for — space-separated ids of contributing inputs", "name — participates in the form"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<p>Total: <output for='qty price'>$29.00</output></p>", "render": true,
+    "mdn": "output", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-output-element"
+  },
+  {
+    "slug": "fieldset", "display": "fieldset", "category": "Forms",
+    "summary": "Groups related controls, with legend as the group's caption.",
+    "use": "Mandatory for radio and checkbox groups — the legend is announced with each control's label; disabled on it disables the whole group.",
+    "avoid": "Don't use it as a generic bordered box; it announces itself as a group.",
+    "attributes": ["disabled — disables all contained controls", "name / form"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<fieldset>\n  <legend>Preferred edition</legend>\n  <input type='radio' id='ed-text' name='edition' checked>\n  <label for='ed-text'>Plain text</label>\n  <input type='radio' id='ed-html' name='edition'>\n  <label for='ed-html'>Semantic HTML</label>\n</fieldset>", "render": true,
+    "mdn": "fieldset", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-fieldset-element"
+  },
+  {
+    "slug": "legend", "display": "legend", "category": "Forms",
+    "summary": "The caption of a fieldset, announced with every control inside the group.",
+    "use": "First child of fieldset, naming the group ('Delivery details', 'Payment method').",
+    "avoid": "Only valid as fieldset's first child; keep it short — screen readers repeat it per control.",
+    "attributes": [],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<fieldset>\n  <legend>Delivery details</legend>\n  …controls…\n</fieldset>", "render": false,
+    "mdn": "legend", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-legend-element"
+  },
+  {
+    "slug": "progress", "display": "progress", "category": "Forms",
+    "summary": "Task completion: how much of a known process is done.",
+    "use": "With max and value for determinate progress; omit value for indeterminate 'working…'.",
+    "avoid": "For a measurement within a range (disk usage, score) use meter — progress means a task.",
+    "attributes": ["value — current progress", "max — the total"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<label for='done'>Guide completion</label>\n<progress id='done' max='9' value='8'>8 of 9 sections</progress>", "render": true,
+    "mdn": "progress", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element"
+  },
+  {
+    "slug": "meter", "display": "meter", "category": "Forms",
+    "summary": "A scalar measurement within a known range: stock, disk usage, password strength, a score.",
+    "use": "With min/max plus low/high/optimum so the browser can color-code good, warning, and critical zones.",
+    "avoid": "For task completion use progress — meter is a gauge, not a journey.",
+    "attributes": ["value / min / max", "low / high / optimum — zone thresholds"],
+    "baseline": "widely", "example": "product-order.html",
+    "snippet": "<label for='stock'>Stock</label>\n<meter id='stock' min='0' max='500' low='50' high='400' optimum='500' value='132'>132 of 500</meter>", "render": true,
+    "mdn": "meter", "spec": "https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element"
+  }
+]

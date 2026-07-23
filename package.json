@@ -1,0 +1,12 @@
+{
+  "name": "html-tags-com",
+  "private": true,
+  "description": "html-tags.com — the reference for modern semantic HTML: every living element with when-to-use guidance, live examples, and Baseline status.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "details", "display": "details", "category": "Interactive",
+    "summary": "A disclosure widget — expandable content with zero JavaScript.",
+    "use": "For FAQs, transcripts, advanced options; share a name across several to make a browser-managed exclusive accordion, and open expands by default.",
+    "avoid": "Don't hide content critical to the page's point inside a closed details; find-in-page may not reveal it everywhere.",
+    "attributes": ["open — expanded", "name — exclusive accordion group"],
+    "baseline": "widely", "example": "help-center.html",
+    "snippet": "<details name='faq'>\n  <summary>Do I need an account?</summary>\n  <p>No — every guide is public.</p>\n</details>\n<details name='faq'>\n  <summary>Can I read offline?</summary>\n  <p>Yes — save the page; it is self-contained.</p>\n</details>", "render": true,
+    "mdn": "details", "spec": "https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element"
+  },
+  {
+    "slug": "summary", "display": "summary", "category": "Interactive",
+    "summary": "The always-visible, clickable caption of a details element.",
+    "use": "First child of details, phrased so the closed state makes sense on its own.",
+    "avoid": "No interactive content inside it (links/buttons in a summary fight the toggle), and only valid inside details.",
+    "attributes": [],
+    "baseline": "widely", "example": "help-center.html",
+    "snippet": "<details>\n  <summary>Transcript</summary>\n  <p>Welcome to the field guide…</p>\n</details>", "render": true,
+    "mdn": "summary", "spec": "https://html.spec.whatwg.org/multipage/interactive-elements.html#the-summary-element"
+  },
+  {
+    "slug": "dialog", "display": "dialog", "category": "Interactive",
+    "summary": "A dialog box with focus management, top-layer rendering, and Esc-to-close built in.",
+    "use": "showModal() for modals (::backdrop, focus trap, inert background all free); dialog open renders non-modal without any script; forms with method='dialog' close it.",
+    "avoid": "Never rebuild modals from divs and focus-trap libraries — this element is why you don't have to.",
+    "attributes": ["open — visible (non-modal when set by markup)", "closedby — light-dismiss behavior"],
+    "baseline": "widely", "example": "help-center.html",
+    "snippet": "<dialog open>\n  <p>Scheduled maintenance Sunday 02:00–04:00 UTC.</p>\n  <form method='dialog'>\n    <button>Got it</button>\n  </form>\n</dialog>", "render": true,
+    "mdn": "dialog", "spec": "https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element"
+  },
+  {
+    "slug": "geolocation", "display": "geolocation", "category": "Interactive",
+    "summary": "A browser-rendered control for sharing the user's location — the browser owns the permission UI.",
+    "use": "Experimentally, for store finders and 'near me' features: listen for its location event and read .position; put a fallback button inside for other browsers.",
+    "avoid": "Chromium-only and experimental — always feature-detect HTMLGeolocationElement and fall back to navigator.geolocation.",
+    "attributes": ["autolocate — fetch on render if already permitted", "watch — continuous updates"],
+    "baseline": "limited", "example": "demo.html",
+    "snippet": "<geolocation watch>\n  <button id='geo-fallback' type='button'>Use my location</button>\n</geolocation>", "render": false,
+    "mdn": "geolocation", "spec": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/geolocation"
+  },
+  {
+    "slug": "script", "display": "script", "category": "Scripting",
+    "summary": "Executable code or embedded data blocks.",
+    "use": "type='application/ld+json' for structured data (the one script even a no-JS site carries); defer or type='module' for behavior so parsing never blocks.",
+    "avoid": "No inline onclick attributes, no document.write, and nothing render-blocking in head without reason.",
+    "attributes": ["src — external script", "type — module or a data MIME type", "defer / async — non-blocking loading"],
+    "baseline": "widely", "example": "demo.html",
+    "snippet": "<script type='application/ld+json'>\n{ \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"…\" }\n</script>", "render": false,
+    "mdn": "script", "spec": "https://html.spec.whatwg.org/multipage/scripting.html#the-script-element"
+  },
+  {
+    "slug": "noscript", "display": "noscript", "category": "Scripting",
+    "summary": "Fallback content rendered only when scripting is unavailable.",
+    "use": "To keep a script-dependent page usable without JS — a static alternative, not an apology.",
+    "avoid": "'Please enable JavaScript' is a failure state, not a fallback; progressive enhancement beats noscript walls.",
+    "attributes": [],
+    "baseline": "widely", "example": null,
+    "snippet": "<noscript>\n  <p>The live chart needs JavaScript; the same data is in the table below.</p>\n</noscript>", "render": false,
+    "mdn": "noscript", "spec": "https://html.spec.whatwg.org/multipage/scripting.html#the-noscript-element"
+  },
+  {
+    "slug": "template", "display": "template", "category": "Scripting",
+    "summary": "Inert HTML held for cloning by script — parsed but not rendered, fetched, or executed.",
+    "use": "For markup a script will stamp out repeatedly (list items, cards) and for declarative shadow DOM via shadowrootmode.",
+    "avoid": "Content inside is invisible to the page and to search engines — never put primary content in a template.",
+    "attributes": ["shadowrootmode — declarative shadow root (open | closed)"],
+    "baseline": "widely", "example": null,
+    "snippet": "<template id='row'>\n  <li><span class='name'></span></li>\n</template>", "render": false,
+    "mdn": "template", "spec": "https://html.spec.whatwg.org/multipage/scripting.html#the-template-element"
+  },
+  {
+    "slug": "slot", "display": "slot", "category": "Scripting",
+    "summary": "A placeholder inside shadow DOM that light-DOM children fill.",
+    "use": "In web components: named slots receive elements with matching slot attributes; default slot takes the rest.",
+    "avoid": "Meaningless outside a shadow tree — it's web-component plumbing, not page content.",
+    "attributes": ["name — the slot's name"],
+    "baseline": "widely", "example": null,
+    "snippet": "<template shadowrootmode='open'>\n  <header><slot name='title'>Untitled</slot></header>\n  <slot></slot>\n</template>", "render": false,
+    "mdn": "slot", "spec": "https://html.spec.whatwg.org/multipage/scripting.html#the-slot-element"
+  }
+]
