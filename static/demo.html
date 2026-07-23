@@ -6,7 +6,7 @@
   <title>The Semantic HTML Vocabulary — A Self-Demonstrating Field Guide</title>
   <meta name="description" content="A single CSS-free page that demonstrates every modern semantic HTML element of 2026 in live use, from landmarks to ruby annotations to declarative popovers.">
   <link rel="canonical" href="https://html-tags.com/demo.html">
-  <link rel="stylesheet" href="styles/chrome.css">
+  <link rel="stylesheet" href="styles/tag.css">
   <link rel="alternate" hreflang="en" href="https://html-tags.com/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://html-tags.com/demo.html">
   <meta property="og:type" content="article">
@@ -39,27 +39,6 @@
         <li><a href="https://github.com/mikezupper/html-tags-com" rel="external">GitHub</a></li>
       </ul>
     </nav>
-    <nav aria-label="Table of contents">
-      <h2>On this page</h2>
-      <ol>
-        <li><a href="#text-semantics">Inline text semantics</a></li>
-        <li><a href="#grouping">Grouping and lists</a></li>
-        <li><a href="#quotes-edits">Quotations and edits</a></li>
-        <li><a href="#i18n">Internationalization elements</a></li>
-        <li><a href="#tables">Tabular data</a></li>
-        <li><a href="#media">Media and embedded content</a></li>
-        <li><a href="#forms">Forms</a></li>
-        <li><a href="#interactive">JS-free interactivity</a></li>
-        <li><a href="#frontier">Frontier elements (code only)</a></li>
-      </ol>
-    </nav>
-    <search>
-      <form action="https://developer.mozilla.org/en-US/search" method="get">
-        <label for="q">Search MDN for an element</label>
-        <input type="search" id="q" name="q" placeholder="e.g. hgroup">
-        <button type="submit">Search</button>
-      </form>
-    </search>
   </header>
 
   <main id="main">
@@ -74,11 +53,35 @@
            Filed under <a href="#" rel="tag">HTML</a></p>
       </header>
 
-      <p>This document is written under one rule: <strong>no CSS, no presentational
-      JavaScript</strong> (the site header above is the page's one styled element — everything below renders on the browser's default stylesheet). What your browser renders is its default stylesheet applied to
-      honest markup. Turn on a screen reader, or open the accessibility tree in devtools
-      — the structure you hear is the structure you see, because the page
-      <em>is</em> its structure.</p>
+      <nav aria-label="Table of contents">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#text-semantics">Inline text semantics</a></li>
+          <li><a href="#grouping">Grouping and lists</a></li>
+          <li><a href="#quotes-edits">Quotations and edits</a></li>
+          <li><a href="#i18n">Internationalization elements</a></li>
+          <li><a href="#tables">Tabular data</a></li>
+          <li><a href="#media">Media and embedded content</a></li>
+          <li><a href="#forms">Forms</a></li>
+          <li><a href="#interactive">JS-free interactivity</a></li>
+          <li><a href="#frontier">Frontier elements (code only)</a></li>
+        </ol>
+      </nav>
+
+      <search>
+        <form action="https://developer.mozilla.org/en-US/search" method="get">
+          <label for="q">Search MDN for an element</label>
+          <input type="search" id="q" name="q" placeholder="e.g. hgroup">
+          <button type="submit">Search</button>
+        </form>
+      </search>
+
+      <p>This document is written under one rule: <strong>the markup carries all the
+      meaning</strong>. The styling you see is the site's theme laid over honest
+      structure — switch the styled view off in the header to read this page exactly
+      as the browser's default stylesheet renders it. Turn on a screen reader, or open
+      the accessibility tree in devtools — the structure you hear is the structure you
+      see, because the page <em>is</em> its structure.</p>
 
       <hr>
 
