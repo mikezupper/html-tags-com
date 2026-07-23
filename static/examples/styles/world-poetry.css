@@ -47,6 +47,7 @@
 
 @layer components {
   :root:has(#css-toggle:checked) {
+    & main > article { max-inline-size: 46rem; margin-inline: auto; }
     & body > header {
       font-family: system-ui, sans-serif;
       display: flex; flex-wrap: wrap; gap: var(--space); align-items: center;

@@ -12,6 +12,7 @@
 import { readFileSync, writeFileSync, rmSync, mkdirSync, cpSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const DIST = join(ROOT, "dist");
@@ -336,6 +337,34 @@ function injectGrid(tags) {
   writeFileSync(index, `${s.slice(0, i)}\n${gridMarkup(tags, "tags/", 3)}\n        ${s.slice(j)}`);
 }
 
+function walk(dir, fn) {
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    const p = join(dir, e.name);
+    if (e.isDirectory()) walk(p, fn);
+    else fn(p);
+  }
+}
+
+// Content-hashed cache busting: stylesheet URLs get ?v=<hash of all CSS>, so a
+// CSS change is picked up immediately regardless of edge/browser cache TTLs.
+function bustCssCache() {
+  const cssFiles = [];
+  walk(DIST, (p) => { if (p.endsWith(".css")) cssFiles.push(p); });
+  const h = createHash("sha1");
+  for (const f of cssFiles.sort()) h.update(readFileSync(f));
+  const v = h.digest("hex").slice(0, 8);
+  walk(DIST, (p) => {
+    let re;
+    if (p.endsWith(".html")) re = /(<link rel="stylesheet" href="[^"]+?\.css)"/g;
+    else if (p.endsWith(".css")) re = /(@import url\("[^"]+?\.css)"/g;
+    else return;
+    const s = readFileSync(p, "utf8");
+    const out = s.replace(re, `$1?v=${v}"`);
+    if (out !== s) writeFileSync(p, out);
+  });
+  return v;
+}
+
 function main() {
   const tags = loadTags();
   rmSync(DIST, { recursive: true, force: true });
@@ -346,7 +375,8 @@ function main() {
   writeFileSync(join(DIST, "cheatsheet.html"), cheatsheetPage(tags));
   writeFileSync(join(DIST, "sitemap.xml"), sitemap(tags));
   injectGrid(tags);
-  console.log(`built ${tags.length} tag pages + explorer + cheatsheet + sitemap into dist/`);
+  const v = bustCssCache();
+  console.log(`built ${tags.length} tag pages + explorer + cheatsheet + sitemap into dist/ (css v=${v})`);
 }
 
 main();

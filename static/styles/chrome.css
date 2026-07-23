@@ -16,6 +16,10 @@
   --chrome-muted: color-mix(in oklch, var(--chrome-text) 58%, var(--chrome-surface));
   --chrome-hairline: color-mix(in oklch, var(--chrome-text) 11%, var(--chrome-surface));
 
+  /* Consistent page shell: same width as the rest of the site */
+  & body { max-inline-size: 72rem; margin-inline: auto; }
+  & main :is(p, li, dd, figcaption) { max-inline-size: 75ch; }
+
   & body > header {
     position: sticky;
     inset-block-start: 0;
